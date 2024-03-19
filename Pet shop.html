@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web nuôi thú cưng</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="Web nuôi thú cưng" content="Nuôi thú cưng cùng nhau">
+
+<style>
+body{
+    font-family: Calibri;
+}
+.header  {
+    height: 150px;
+    background-color:#f29f6e;
+}
+
+.header__shop{
+    width: 140px;
+    padding-left: 18px;
+    padding-right: 12px;
+    padding-top: 18px;
+}
+
+.wallet{
+    font-size: 1.5rem;
+}
+
+
+.grid{
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid__row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -5px;
+    margin-right: -5px;
+    margin-bottom: 20px;
+}
+
+.grid__column{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 23%;
+}
+
+.web_container{
+    background-color: #f5dea8;
+}
+
+.pet-product-item{
+    background-color: rgb(238, 194, 141);
+    margin-top: 10px;
+}
+
+.pet-product-item__img{
+    padding-top: 100%;
+    margin: 5px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.pet-product-item__name{
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: center ;
+}
+
+.pet-product-item__price{
+    font-size: 1.3rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.custom-button {
+    background-color: #f5dea8;
+    color: brown;
+    padding: 6px;
+    border: 2px solid brown;
+    border-radius: 10px;
+}
+
+.custom-button:hover {
+    background-color: #e49b1c;
+}
+
+</style>
+
+<body>
+    <div class="web">
+        <header class="header"> 
+            <nav class="header__shop">
+            <!--Logo shop-->
+                <img src="https://i.pinimg.com/736x/e3/8a/1d/e38a1d1c1a9831eccfedec28b7813319.jpg" alt="search" style="width:115px; height:80px;"/>
+            </nav>
+            <div style="display: flex; justify-content: right; margin: 10px; padding-bottom: 5px;">
+                <button type="button" class="custom-button" style="font-size: 1.5rem; padding: 1px;">🛒</button>
+                <text class="wallet" style="padding-left: 20px"> 100🪙</li>
+            </div>
+        </header>
+        
+        <div class="web_container">
+            <div class="grid">
+                <div class="grid__row">
+                    <div class="grid__column">
+                        <!--Product item-->
+                        <div class="pet-product-item">
+                            <div class="pet-product-item__img" style="background-image: url(https://i.pinimg.com/736x/ca/11/d9/ca11d951e3f39fb26e13bebc149cfcfc.jpg)"></div>
+                            <h4 class="pet-product-item__name">Dog Food</h4>
+                            <h5 class="pet-product-item__price">10🪙</h5>
+                            <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
+                                <button type="button" class="custom-button">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__column">
+                        <!--Product item-->
+                        <div class="pet-product-item">
+                            <div class="pet-product-item__img" style="background-image: url(https://i.pinimg.com/736x/62/28/76/6228760f4a069d04a22fff9661364cc1.jpg)"></div>
+                            <h4 class="pet-product-item__name">Cat Food</h4>
+                            <h5 class="pet-product-item__price">10🪙</h5>
+                            <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
+                                <button type="button" class="custom-button">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__column">
+                        <!--Product item-->
+                        <div class="pet-product-item">
+                            <div class="pet-product-item__img" style="background-image: url(https://i.pinimg.com/736x/3f/6b/94/3f6b94e067259becf8ddb1b95f064def.jpg)"></div>
+                            <h4 class="pet-product-item__name">Chinchilla Food</h4>
+                            <h5 class="pet-product-item__price">10🪙</h5>
+                            <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
+                                <button type="button" class="custom-button">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__column">
+                        <!--Product item-->
+                        <div class="pet-product-item">
+                            <div class="pet-product-item__img" style="background-image: url(https://i.pinimg.com/736x/8c/a3/8c/8ca38cf96bbb35a30f4b9aa3f3216463.jpg)"></div>
+                            <h4 class="pet-product-item__name">Milk</h4>
+                            <h5 class="pet-product-item__price">8🪙</h5>
+                            <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
+                                <button type="button" class="custom-button">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid__row">
+                    <div class="grid__column">
+                        <!--Product item-->
+                        <div class="pet-product-item">
+                            <div class="pet-product-item__img" style="background-image: url(https://i.pinimg.com/736x/2e/33/f9/2e33f911bf66600b38c34fb2da6259a5.jpg)"></div>
+                            <h4 class="pet-product-item__name">Pate</h4>
+                            <h5 class="pet-product-item__price">14🪙</h5>
+                            <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
+                                <button type="button" class="custom-button">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__column">
+                        <!--Product item-->
+                        <div class="pet-product-item">
+                            <div class="pet-product-item__img" style="background-image: url(https://i.pinimg.com/736x/53/63/a9/5363a97f6f5b7492834e907ac1904813.jpg)"></div>
+                            <h4 class="pet-product-item__name">Tuna</h4>
+                            <h5 class="pet-product-item__price">12🪙</h5>
+                            <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
+                                <button type="button" class="custom-button">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__column">
+                        <!--Product item-->
+                        <div class="pet-product-item">
+                            <div class="pet-product-item__img" style="background-image: url(https://i.pinimg.com/736x/fa/76/b5/fa76b56f7c65c96408ba51bcd720ef6b.jpg)"></div>
+                            <h4 class="pet-product-item__name">Catnip</h4>
+                            <h5 class="pet-product-item__price">5🪙</h5>
+                            <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
+                                <button type="button" class="custom-button">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__column">
+                        <!--Product item-->
+                        <div class="pet-product-item">
+                            <div class="pet-product-item__img" style="background-image: url(https://i.pinimg.com/736x/1e/74/5c/1e745c47a8f468e72d8e2080bd36b96d.jpg)"></div>
+                            <h4 class="pet-product-item__name">Phleum Pratense</h4>
+                            <h5 class="pet-product-item__price">5🪙</h5>
+                            <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
+                                <button type="button" class="custom-button">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+         
+      </div>
+      
+</body>
