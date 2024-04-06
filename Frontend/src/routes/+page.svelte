@@ -1,19 +1,19 @@
 <script>
-	import Counter from './Counter.svelte';
+	import Pick from './Pick.svelte';
 </script>
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="Svelte demo pet care app" />
 </svelte:head>
 
 <section>
-	<Counter />
+	<Pick />
 </section>
 
 <style>
 	section {
-		display: flex;
+		display: inline-flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
