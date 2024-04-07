@@ -1,29 +1,30 @@
-<!DOCTYPE html>
-<html>
+<script>
+	$: error = "Oh no, an error occured!";
+</script>
 
-<head>
-  <title>Sign in</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="Web nuôi thú cưng" content="Nuôi thú cưng cùng nhau">
+<div id="signin">
+	<h1><b>Sign in</b></h1>
+	<div class="error">{error}</div>
+	<form>
+		<input type="text" placeholder="Username" />
+		<input type="password" placeholder="Password" />
+		<div class="signup-fogotpass">
+			<button type="button" class="open-button">Sign up</button>
+			<button type="button" class="open-button">Forget password</button>
+		</div>
 
-  <style>
+		<button type="submit" class="button_submit">Sign in</button>
+	</form>
+</div>
+
+
+<style>
     @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
 
     * {
       box-sizing: border-box;
     }
 
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      margin: 0;
-      min-height: 100vh;
-      background: #3498DB;
-      font-family: "Open Sans";
-    }
 
     #signin {
       border-style: solid;
@@ -34,7 +35,7 @@
       text-align: center;
       background: #FDE3C8;
       color: rgba(0, 0, 0, 0.75);
-      
+	}
 
       h1,
       .button_submit {
@@ -86,6 +87,7 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 1ex;
+	  }
 
         button {
           padding: 1ex;
@@ -102,7 +104,6 @@
             background: #3498DB;
           }
         }
-      }
 
       .button_submit {
         color: white;
@@ -114,37 +115,5 @@
           background: #3498DB;
         }
       }
-    }
-
-    body {
-      background-image: url('https://png.pngtree.com/background/20210711/original/pngtree-animal-pet-background-material-picture-image_1081234.jpg');
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: 100% 100%;
-    }
+    
   </style>
-</head>
-
-<body>
-  <div id="signin">
-    <h1><b>Sign in</b></h1>
-    <!--
-    <div class="error">
-      Oh no, an error occured!
-    </div>
-    -->
-    <form>
-      <input type="text" placeholder="Username" />
-      <input type="password" placeholder="Password" />
-      <div class="signup-fogotpass">
-        <button type="Signup" class="open-button" onclick="openFormSignUp()">Sign up</button>
-        <button type="Forgetpass" class="open-button" onclick="openFormForget()">Forget password</button>
-      </div>
-
-      <button type="submit" class="button_submit">Sign in</button>
-    </form>
-
-  </div>
-</body>
-
-</html>

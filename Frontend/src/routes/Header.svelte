@@ -1,5 +1,6 @@
 <script>
 	import logo from '$lib/images/logo.png';
+	import { loggedIn } from '$lib/stores/loggedIn.js';
 </script>
 
 <header>
@@ -7,19 +8,21 @@
 	<div class="menu">
 		<nav>
 			<ul>
-				<div style="padding:0">
-					<li>
-						<a href="."> <img src={logo} alt="logo" style="height:65px; width:60px" /></a>
-					</li>
-				</div>
+				<li>
+					<a href="/">
+						<img src={logo} alt="logo" style="height:65px; width:60px" />
+					</a>
+				</li>
 				<li class="menu_list"><a href="pickup">Pet Detail</a></li>
-				<li class="menu_list"><a href="petcare.html">Pet care</a></li>
+				<li class="menu_list"><a href="petcare">Pet care</a></li>
 				<li class="menu_list"><a href="#group">Forum</a></li>
+				{#if !$loggedIn}
 				<ul class="top_icon">
-					<li class="login"><a href="SignIn.html">Login</a></li>
+					<li class="login"><a href="signin">Login</a></li>
 
 					<li class="signup"><a href="SignUp.html">Signup</a></li>
 				</ul>
+				{/if}
 			</ul>
 		</nav>
 	</div>
@@ -52,39 +55,31 @@
 		font-size: 30px;
 	}
 
-
-	li a:hover {
-		background-color: #ff6600;
-		transition: background 500ms ease-in-out;
-	}
-
 	li.menu_list a {
 		display: block;
 		color: white;
 		text-align: center;
 		padding: 15px 25px;
 		text-decoration: none;
+
+		&:hover {
+			background-color: #ff6600;
+			transition: background 500ms ease-in-out;
+		}
 	}
 
-	li.login a {
+	ul.top_icon {
+		float: right;
+	}
+	.top_icon li a {
 		display: flex;
 		color: white;
 		text-align: center;
 		padding: 15px 20px;
 		text-decoration: none;
-	}
-
-	li.signup a {
-		display: flex;
-		color: white;
-		text-align: center;
-		padding: 15px;
-		padding-left: 35px;
-		padding-right: 35px;
-		text-decoration: none;
-	}
-
-	ul.top_icon {
-		float: right;
+		&:hover {
+			background-color: #ff6600;
+			transition: background 500ms ease-in-out;
+		}
 	}
 </style>
