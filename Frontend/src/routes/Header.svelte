@@ -14,7 +14,7 @@
 					</li>
 				</div>
 				<li class="menu_list"><a href="#petdetail">Pet Detail</a></li>
-				<li class="menu_list"><a href="petcare.html">Pet care</a></li>
+				<li class="menu_list"><a href="/petcare">Pet care</a></li>
 				<li class="menu_list"><a href="#group">Forum</a></li>
 				<div>
 					<ul class="top_icon">
@@ -54,7 +54,7 @@
 		font-family: 'Comic Sans MS', cursive;
 		font-size: 30px;
 	}
-	
+
 	li a:hover {
 		background-color: #ff6600;
 		transition: background 500ms ease-in-out;
