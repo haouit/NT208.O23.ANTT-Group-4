@@ -1,12 +1,14 @@
 <script>
+    import Pick from './Pick.svelte';
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Pet detail</title>
 	<meta name="description" content="Svelte demo pet care app" />
 </svelte:head>
 
 <section>
+    <Pick />
 </section>
 
 <style>

@@ -1,24 +1,31 @@
 <script>
-	import { spring } from 'svelte/motion';
 	import dog from '$lib/images/dog.jpg';
 	import cat from '$lib/images/cat.jpg';
 	import chinchilla from '$lib/images/chinchilla.jpg';
 
-	let title = '<strong>Chọn thú cưng</strong>'; // Example of using HTML in Svelte
+    import dog_sound from '$lib/sounds/happy-puppy-barks-741.wav';
+    import cat_sound from '$lib/sounds/cartoon-little-cat-meow.wav';
+    import chinchilla_sound from '$lib/sounds/chinchilla-bquiek1.mp3';
 
-	let count = 0;
+	$: title = `<strong>Chọn thú cưng</strong>`;
 
-	const displayed_count = spring();
-	$: displayed_count.set(count);
-	$: offset = modulo($displayed_count, 1);
+    let pet_chosen = 0;
 
-	/**
-	 * @param {number} n
-	 * @param {number} m
-	 */
-	function modulo(n, m) {
-		return ((n % m) + m) % m;
-	}
+    function dogClick() {
+        const audio = new Audio(dog_sound);
+        audio.play();
+        pet_chosen = 1;
+    }
+    function chinchillaClick() {
+        const audio = new Audio(chinchilla_sound);
+        audio.play();
+        pet_chosen = 2;
+    }
+    function catClick() {
+        const audio = new Audio(cat_sound);
+        audio.play();
+        pet_chosen = 3;
+    }
 </script>
 
 
@@ -30,14 +37,14 @@
 		</tr>
 		<div id="petdetail">
 			<tr id="pet">
-				<td>
-					<img src={dog} alt="Norway" /> <!-- Example of dynamic attribute -->
+				<td on:click={dogClick}>
+					<img src={dog} alt="Norway"/> <!-- Example of dynamic attribute -->
 				</td>
-				<td>
-					<img src={chinchilla} alt="Norton" />
+				<td  on:click={chinchillaClick}>
+                    <img src={chinchilla} alt="Norton"/>
 				</td>
-				<td>
-					<img src={cat} alt="Norman" />
+				<td on:click={catClick}>
+					<img src={cat} alt="Norman"/>
 				</td>
 			</tr>
 
@@ -67,7 +74,6 @@
 		display: flex;
 		justify-content: center;
 		margin: 0px auto 10px auto;
-
 		font-family: Calibri;
 		font-size: 50px;
 		color: rgb(233, 107, 23);
