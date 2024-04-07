@@ -139,10 +139,8 @@
 				<input type="text" placeholder="Username" />
 				<input type="password" placeholder="Password" />
 				<div class="signup-fogotpass">
-					<button type="Signup" class="open-button" onclick="openFormSignUp()">Sign up</button>
-					<button type="Forgetpass" class="open-button" onclick="openFormForget()"
-						>Forget password</button
-					>
+					<button type="button" class="open-button">Sign up</button>
+					<button type="button" class="open-button">Forget password</button>
 				</div>
 
 				<button type="submit" class="button_submit">Sign in</button>
