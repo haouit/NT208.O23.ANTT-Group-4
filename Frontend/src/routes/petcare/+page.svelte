@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import avatar from '$lib/images/avatar_cat_developer.png';
 	import room from '$lib/images/pet_room.gif';
 	import cat from '$lib/images/cat.png';
@@ -26,7 +26,7 @@
 	<nav>
 		<ul>
 			<li><a href="/">Home Page</a></li>
-			<li><a href="./pickup">Pet Detail</a></li>
+			<li><a href="pickup">Pet Detail</a></li>
 			<li><a href="petshop">Shop</a></li>
 			<li><a href="#group">Group</a></li>
 			<li><a href="mission">Mission</a></li>

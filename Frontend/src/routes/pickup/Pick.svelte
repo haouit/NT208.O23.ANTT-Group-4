@@ -40,7 +40,7 @@
 				<td on:click={dogClick}>
 					<img src={dog} alt="Norway"/> <!-- Example of dynamic attribute -->
 				</td>
-				<td  on:click={chinchillaClick}>
+				<td on:click={chinchillaClick}>
                     <img src={chinchilla} alt="Norton"/>
 				</td>
 				<td on:click={catClick}>
