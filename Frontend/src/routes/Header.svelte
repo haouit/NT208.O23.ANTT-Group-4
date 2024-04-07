@@ -1,5 +1,4 @@
 <script>
-	import { page } from '$app/stores';
 	import logo from '$lib/images/logo.png';
 </script>
 
@@ -10,19 +9,17 @@
 			<ul>
 				<div style="padding:0">
 					<li>
-						<a href="Home.html"> <img src={logo} alt="logo" style="height:65px; width:60px" /></a>
+						<a href="."> <img src={logo} alt="logo" style="height:65px; width:60px" /></a>
 					</li>
 				</div>
-				<li class="menu_list"><a href="#petdetail">Pet Detail</a></li>
+				<li class="menu_list"><a href="pickup">Pet Detail</a></li>
 				<li class="menu_list"><a href="petcare.html">Pet care</a></li>
 				<li class="menu_list"><a href="#group">Forum</a></li>
-				<div>
-					<ul class="top_icon">
-						<li class="login"><a href="SignIn.html">Login</a></li>
+				<ul class="top_icon">
+					<li class="login"><a href="SignIn.html">Login</a></li>
 
-						<li class="signup"><a href="SignUp.html">Signup</a></li>
-					</ul>
-				</div>
+					<li class="signup"><a href="SignUp.html">Signup</a></li>
+				</ul>
 			</ul>
 		</nav>
 	</div>
@@ -54,7 +51,7 @@
 		font-family: 'Comic Sans MS', cursive;
 		font-size: 30px;
 	}
-	
+
 	li a:hover {
 		background-color: #ff6600;
 		transition: background 500ms ease-in-out;
