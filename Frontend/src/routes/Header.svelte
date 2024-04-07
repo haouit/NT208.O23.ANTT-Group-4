@@ -52,6 +52,7 @@
 		font-size: 30px;
 	}
 
+
 	li a:hover {
 		background-color: #ff6600;
 		transition: background 500ms ease-in-out;
