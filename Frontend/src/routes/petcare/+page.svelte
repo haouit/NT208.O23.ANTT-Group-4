@@ -1,60 +1,58 @@
 <script>
+	import { loggedIn } from '$lib/stores/logged_in.js';
+
 	import avatar from '$lib/images/avatar_cat_developer.png';
 	import room from '$lib/images/pet_room.gif';
 	import cat from '$lib/images/cat.png';
-    import chat_button from '$lib/images/chat.png';
+	import chat_button from '$lib/images/chat.png';
 
-    import { loggedIn } from '$lib/stores/loggedIn.js';
+	const status = 'Happy';
+	$: exp = 90;
+	$: level = 1;
+
+	$: if (exp >= 100) {
+		level += 1;
+		exp -= 100;
+	}
 
 
-    $: status = "Happy";
-    $: level = 10;
-    $: exp = 90;
-
-    function onOpen() {
-        loggedIn.set(true);
-    }
-
-    onOpen();
 </script>
 
-<!--Nút User-->
-<div class="icon">
-	<a href="user.html"><img src={avatar} alt="search" style="width:60px; height:60px;" /></a>
-</div>
-<div class="grid-container">
-	<nav>
-		<ul>
-			<li><a href="/">Home Page</a></li>
-			<li><a href="pickup">Pet Detail</a></li>
-			<li><a href="petshop">Shop</a></li>
-			<li><a href="#group">Group</a></li>
-			<li><a href="mission">Mission</a></li>
-		</ul>
-	</nav>
-</div>
-<div class="status">
-	<span> Status: {status} </span>
-	<span> Level: {level} </span>
-	<span> Exp: {exp} </span>
-</div>
-<img class="img_pet" src={cat} alt="cat pet" />
+{#if $loggedIn}
+	<!--Nút User-->
+	<div class="icon">
+		<a href="user"><img src={avatar} alt="search" style="width:60px; height:60px;" /></a>
+	</div>
+	<div class="grid-container">
+		<nav>
+			<ul>
+				<li><a href="/">Home Page</a></li>
+				<li><a href="pickup">Pet Detail</a></li>
+				<li><a href="petshop">Shop</a></li>
+				<li><a href="#group">Group</a></li>
+				<li><a href="mission">Mission</a></li>
+			</ul>
+		</nav>
+	</div>
+	<div class="status">
+		<span> Status: {status} </span>
+		<span> Level: {level} </span>
+		<span> Exp: {exp} </span>
+	</div>
+	<img class="img_pet" src={cat} alt="cat pet" />
 
-<div class="function_pet">
-    <button on:click={() => exp += 1}>Play pet</button>
-	<button>Feed pet</button>
-	<button>Clean pet</button>
-	<button>Train pet</button>
-</div>
+	<div class="function_pet">
+		<button on:click={() => (exp += 20)}>Play pet</button>
+		<button on:click={() => (exp += 10)}>Feed pet</button>
+		<button on:click={() => (exp += 15)}>Clean pet</button>
+		<button on:click={() => (exp += 15)}>Train pet</button>
+	</div>
 
-<!--Nút chat-->
-<div class="chat">
-	<img
-		src={chat_button}
-		alt="chat button"
-		style="width:60px; height:60px;"
-	/>
-</div>
+	<!--Nút chat-->
+	<div class="chat">
+		<img src={chat_button} alt="chat button" style="width:60px; height:60px;" />
+	</div>
+{/if}
 
 <style>
 	.chat {
@@ -93,7 +91,7 @@
 		padding: 12px;
 		text-decoration: none;
 		display: inline-block;
-		font-family: Calibri;
+		font-family: 'Comic Sans MS', cursive;
 		font-size: 15px;
 	}
 
@@ -121,7 +119,7 @@
 		padding: 10px;
 		background-color: #ff9966;
 		color: white;
-		font-family: Calibri;
+		font-family: 'Comic Sans MS', cursive;
 		border-radius: 10px;
 	}
 
@@ -130,9 +128,9 @@
 		text-align: center;
 		margin: 0 40% 40%;
 		font-size: 18px;
-
 		border: 3px cyan solid;
 		border-radius: 10px;
 		background-color: white;
+		
 	}
 </style>

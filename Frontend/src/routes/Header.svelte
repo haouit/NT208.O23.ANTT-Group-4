@@ -1,6 +1,6 @@
 <script>
 	import logo from '$lib/images/logo.png';
-	import { loggedIn } from '$lib/stores/loggedIn.js';
+	import { loggedIn } from '$lib/stores/logged_in.js';
 </script>
 
 <header>
@@ -18,7 +18,7 @@
 				<li class="menu_list"><a href="#group">Forum</a></li>
 				{#if !$loggedIn}
 				<ul class="top_icon">
-					<li class="login"><a href="signin">Login</a></li>
+					<li class="login"><a href="login">Login</a></li>
 
 					<li class="signup"><a href="SignUp.html">Signup</a></li>
 				</ul>
