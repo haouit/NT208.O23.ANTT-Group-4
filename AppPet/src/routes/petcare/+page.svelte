@@ -4,66 +4,63 @@
 	export let data: PageData;
 </script>
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Web nuôi thú cưng</title>
-		<link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="Web nuôi thú cưng" content="Nuôi thú cưng cùng nhau" />
-	</head>
+<head>
+	<title>Web nuôi thú cưng</title>
+	<link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="Web nuôi thú cưng" content="Nuôi thú cưng cùng nhau" />
+</head>
 
-	<body>
-		<!--Nút User-->
-		<div class="icon">
-			<a href="user.html"
-				><img
-					src="https://i.pinimg.com/736x/02/38/e8/0238e8400880ff5533eacbfa6cf916ac.jpg"
-					alt="search"
-					style="width:60px; height:60px;"
-				/></a
-			>
-		</div>
-		<div class="grid-container">
-			<nav>
-				<ul>
-					<li><a href="/">Home Page</a></li>
-					<li><a href="Home.html">Pet Detail</a></li>
-					<li><a href="Pet shop.html">Shop</a></li>
-					<li><a href="#group">Group</a></li>
-					<li><a href="mission.html">Mission</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="status">
-			<span class="status_list"> Status: Happy </span>
-			<span class="status_list"> Level: 10 </span>
-			<span class="status_list"> Exp: 90/100 </span>
-		</div>
-		<img
-			class="img_pet"
-			src="https://z-p3-scontent.fsgn5-11.fna.fbcdn.net/v/t1.15752-9/431617719_917774529800812_4136666370522186060_n.png?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGl_u2HhoQi9FjpgOFMGmbTPvvn8U3rqSA---fxTeupIJkOVYPOdr-eyOlkqoH49fCpces03YjtI7rrI_GiKWzN&_nc_ohc=3f6YcvRRfkUAX9O6mR1&_nc_ht=z-p3-scontent.fsgn5-11.fna&oh=03_AdT0r-FimJKmOXBhZRwrcmL5GTWmHzg_LyfUrLSaroAChQ&oe=66166377"
-		/>
+<body>
+	<!--Nút User-->
+	<div class="icon">
+		<a href="user.html"
+			><img
+				src="https://i.pinimg.com/736x/02/38/e8/0238e8400880ff5533eacbfa6cf916ac.jpg"
+				alt="search"
+				style="width:60px; height:60px;"
+			/></a
+		>
+	</div>
+	<div class="grid-container">
+		<nav>
+			<ul>
+				<li><a href="/">Home Page</a></li>
+				<li><a href="Home.html">Pet Detail</a></li>
+				<li><a href="Pet shop.html">Shop</a></li>
+				<li><a href="#group">Group</a></li>
+				<li><a href="mission.html">Mission</a></li>
+			</ul>
+		</nav>
+	</div>
+	<div class="status">
+		<span class="status_list"> Status: Happy </span>
+		<span class="status_list"> Level: 10 </span>
+		<span class="status_list"> Exp: 90/100 </span>
+	</div>
+	<img
+		class="img_pet"
+		src="https://z-p3-scontent.fsgn5-11.fna.fbcdn.net/v/t1.15752-9/431617719_917774529800812_4136666370522186060_n.png?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGl_u2HhoQi9FjpgOFMGmbTPvvn8U3rqSA---fxTeupIJkOVYPOdr-eyOlkqoH49fCpces03YjtI7rrI_GiKWzN&_nc_ohc=3f6YcvRRfkUAX9O6mR1&_nc_ht=z-p3-scontent.fsgn5-11.fna&oh=03_AdT0r-FimJKmOXBhZRwrcmL5GTWmHzg_LyfUrLSaroAChQ&oe=66166377"
+	/>
 
-		<div class="function_pet">
-			<a href="#" class="function_pet_list">Play pet</a>
-			<a href="#" class="function_pet_list">Feed pet</a>
-			<a href="#" class="function_pet_list">Clean pet</a>
-			<a href="#" class="function_pet_list">Train pet</a>
-		</div>
+	<div class="function_pet">
+		<a href="#" class="function_pet_list">Play pet</a>
+		<a href="#" class="function_pet_list">Feed pet</a>
+		<a href="#" class="function_pet_list">Clean pet</a>
+		<a href="#" class="function_pet_list">Train pet</a>
+	</div>
 
-		<!--Nút chat-->
-		<div class="chat">
-			<a href="#chat"
-				><img
-					src="https://freepngimg.com/thumb/chat/158654-pic-chat-icon-free-clipart-hq.png"
-					alt="Image"
-					style="width:60px; height:60px;"
-				/></a
-			>
-		</div>
-	</body>
-</html>
+	<!--Nút chat-->
+	<div class="chat">
+		<a href="#chat">
+			<img
+				src="https://freepngimg.com/thumb/chat/158654-pic-chat-icon-free-clipart-hq.png"
+				alt="Image"
+				style="width:60px; height:60px;"
+			/></a
+		>
+	</div>
+</body>
 
 <style>
 	.chat {
