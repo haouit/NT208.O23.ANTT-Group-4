@@ -6,10 +6,11 @@
 	$: isError = false;
 
 	let account = '';
+	let passwd = '';
 
 	function submitLogin() {
 		// logic here
-		if (account == '') {
+		if (account == '' || passwd == '') {
 			isError = true;
 		} else {
 			isError = false;
@@ -26,13 +27,13 @@
 	{/if}
 	<form>
 		<input bind:value={account} placeholder="Username" />
-		<input type="password" placeholder="Password" />
+		<input bind:value={passwd} type="password" placeholder="Password" />
 		<div class="signup-forgot">
-			<button type="button" class="open-button">Sign up</button>
-			<button type="button" class="open-button">Forget password</button>
+			<button type="button" class="open-button"><a href="/signup">Sign up</a> </button>
+			<button type="button" class="open-button"><a href="/forget">Forget Password</a> </button>
 		</div>
 
-		<button type="submit" class="button_submit" on:click={submitLogin}>Sign in</button>
+		<button type="submit" class="button_submit" on:click={submitLogin}><a href = "/">Sign in</a></button>
 	</form>
 </div>
 
@@ -57,6 +58,7 @@
 	h1,
 	.button_submit {
 		font-weight: 300;
+		color: orangered ;
 		text-transform: uppercase;
 	}
 
@@ -92,7 +94,7 @@
 
 		&:focus {
 			outline: none;
-			border: 2px solid #3498db;
+			border: 2px solid orangered;
 		}
 
 		&:not(:last-child) {
@@ -105,7 +107,7 @@
 		justify-content: space-between;
 		margin-bottom: 1ex;
 	}
-
+/*button là forget passwd vs sign up*/
 	button {
 		padding: 1ex;
 		border: 2px solid #ecf0f1;
@@ -117,19 +119,35 @@
 
 		&:hover {
 			outline: none;
-			border: 2px solid #3498db;
-			background: #3498db;
+			border: 2px solid orange;
+			background: orange;
 		}
 	}
-
+/*button signin nè*/
 	.button_submit {
 		color: white;
+		font-weight: bold;
+		
 		background: #ff7e6b;
 
 		&:hover {
 			outline: none;
-			border: 2px solid #3498db;
-			background: #3498db;
+			border: 2px solid orangered;
+			background: orangered;
 		}
+	
+	}
+
+	.button_submit a {
+			color: white;
+
+		}
+/*Cài đặt này dành cho button forget passwd và signUp*/
+	a {
+		text-decoration: none;
+		color: #181818;
+	}
+	a:hover {
+		text-decoration: none;
 	}
 </style>
