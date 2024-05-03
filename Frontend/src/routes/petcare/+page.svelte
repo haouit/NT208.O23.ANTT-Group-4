@@ -1,13 +1,14 @@
+<!--File này dùng cho petcare-->
 <script>
 	import { loggedIn } from '$lib/stores/logged_in.js';
-
+	
 	import avatar from '$lib/images/avatar_cat_developer.png';
-	import room from '$lib/images/pet_room.gif';
+	
 	import cat from '$lib/images/cat.png';
 	import chat_button from '$lib/images/chat.png';
 
 	const status = 'Happy';
-	$: exp = 90;
+	$: exp = 0;
 	$: level = 1;
 
 	$: if (exp >= 100) {
@@ -17,30 +18,33 @@
 
 
 </script>
+<body>
+	
 
 {#if $loggedIn}
 	<!--Nút User-->
 	<div class="icon">
-		<a href="user"><img src={avatar} alt="search" style="width:60px; height:60px;" /></a>
+		<a href="/user"><img src={avatar} alt="search" style="width:60px; height:60px;" /></a>
 	</div>
+	<!--Thanh điều hướng của pet care-->
 	<div class="grid-container">
 		<nav>
 			<ul>
-				<li><a href="/">Home Page</a></li>
-				<li><a href="pickup">Pet Detail</a></li>
-				<li><a href="petshop">Shop</a></li>
+				
+				<li><a href="pet_shop">Shop</a></li>
 				<li><a href="#group">Group</a></li>
-				<li><a href="mission">Mission</a></li>
+				<li><a href="/Mission">Mission</a></li>
 			</ul>
 		</nav>
 	</div>
+<!--Thanh trạng thái của pet-->
 	<div class="status">
 		<span> Status: {status} </span>
 		<span> Level: {level} </span>
 		<span> Exp: {exp} </span>
 	</div>
 	<img class="img_pet" src={cat} alt="cat pet" />
-
+<!--Tăng exp sau mỗi lần click đối với mỗi chức năng-->
 	<div class="function_pet">
 		<button on:click={() => (exp += 20)}>Play pet</button>
 		<button on:click={() => (exp += 10)}>Feed pet</button>
@@ -53,7 +57,7 @@
 		<img src={chat_button} alt="chat button" style="width:60px; height:60px;" />
 	</div>
 {/if}
-
+</body>
 <style>
 	.chat {
 		position: fixed;
@@ -69,8 +73,27 @@
 
 	.grid-container {
 		display: grid;
-		width: 120px;
+		width: 75px;
 	}
+	
+	
+
+	body {
+		background-image: url("$lib/images/pet_room.gif");
+		background-size: cover;
+		background-repeat: no-repeat;
+		min-height: 100vh;
+		margin: 0;
+		background-attachment: fixed;
+		background-color: var(--color-bg-1);
+		background-size: 100vw 100vh;
+		/*background-image: radial-gradient(
+				50% 50% at 50% 50%,
+				rgba(255, 255, 255, 0.75) 0%,
+				rgba(255, 255, 255, 0) 100%
+		),
+		linear-gradient(180deg, var(--color-bg-0) 0%, var(--color-bg-1) 15%, var(--color-bg-2) 50%);*/
+}
 
 	ul {
 		list-style-type: none;
@@ -89,6 +112,7 @@
 		color: white;
 		text-align: center;
 		padding: 12px;
+
 		text-decoration: none;
 		display: inline-block;
 		font-family: 'Comic Sans MS', cursive;
@@ -97,8 +121,10 @@
 
 	li a:hover {
 		background-color: #ff6600;
-	}
-
+		padding-right: 100%;
+		
+	}	
+	
 	.img_pet {
 		width: 30%;
 
@@ -124,13 +150,19 @@
 	}
 
 	.status {
-		color: black;
+		color: brown;
 		text-align: center;
-		margin: 0 40% 40%;
-		font-size: 18px;
+		margin: 0 35% 30%; /*margin đầu tiên là top-bottom, giá trị thứ 2 là left-right, giá trị cuối là vs con mèo	 */
+		padding-top: 20px;
+		padding-bottom: 20px;
+		font-size: 20px;
 		border: 3px cyan solid;
-		border-radius: 10px;
+		border-radius: 15px;
 		background-color: white;
-		
+		font-weight: bold;
+		text-transform: uppercase;	
+	}
+	span {
+		padding-inline: 10px;
 	}
 </style>
