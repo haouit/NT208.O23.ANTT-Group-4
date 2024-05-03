@@ -1,3 +1,4 @@
+<!--File này chứa thanh điều hướng-->
 <script>
 	import logo from '$lib/images/logo.png';
 	import { loggedIn } from '$lib/stores/logged_in.js';
@@ -15,19 +16,21 @@
 				</li>
 				<li class="menu_list"><a href="pickup">Pet Detail</a></li>
 				<li class="menu_list"><a href="petcare">Pet care</a></li>
-				<li class="menu_list"><a href="#group">Forum</a></li>
+				<!--<li class="menu_list"><a href="#group">Forum</a></li>-->
+				
 				{#if !$loggedIn}
-				<ul class="top_icon">
-					<li class="login"><a href="login">Login</a></li>
+					<ul class="top_icon">
+						<li class="login"><a href="/login">Login</a></li>
 
-					<li class="signup"><a href="SignUp.html">Signup</a></li>
-				</ul>
+						<li class="signup"><a href="/signup">Signup</a></li>
+					</ul>
 				{/if}
 			</ul>
 		</nav>
 	</div>
+	
+	
 </header>
-
 <style>
 	header {
 		background-color: #f29f6e;
@@ -79,7 +82,9 @@
 		text-decoration: none;
 		&:hover {
 			background-color: #ff6600;
-			transition: background 500ms ease-in-out;
+			transition: background 500ms ease-in-out; /*Giúp cho việc chuyển hiệu ứng mượt mà hơn khi background-color xảy ra sự kiện hover.
+			500ms: thời gian chuyển đổi là 500 mili giây
+			ease-in out: hàm chuyển đổi điều chỉnh tốc độ của hiệu ứng chuyển đổi */
 		}
 	}
 </style>
