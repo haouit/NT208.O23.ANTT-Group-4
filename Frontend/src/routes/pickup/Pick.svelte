@@ -57,7 +57,7 @@
 		</div>
 		<div style="display: flex; justify-content: center; margin: 40px;" class="select">
 			<button
-				type="button"><a href="petcare.html">Chọn nuôi</a>
+				type="button"><a href="./petcare">Chọn nuôi</a>
 			</button>
 		</div>
 	</table>
