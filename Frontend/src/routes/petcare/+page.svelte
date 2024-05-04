@@ -31,9 +31,9 @@
 		<nav>
 			<ul>
 				
-				<li><a href="pet_shop">Shop</a></li>
+				<li><a href="/shop">Shop</a></li>
 				<li><a href="#group">Group</a></li>
-				<li><a href="/Mission">Mission</a></li>
+				<li><a href="/mission">Mission</a></li>
 			</ul>
 		</nav>
 	</div>
