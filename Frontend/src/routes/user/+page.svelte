@@ -26,10 +26,10 @@
                 </tr>
                 <tr>
                     <td>Coin:</td>
-                    <td>1.000.000</td>
+                    <td>100</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><a href="#change-info">Change Information</a></td>
+                    <td colspan="2"><a href="/change-Info">Change Information</a></td>
                 </tr>
             </table>
         </div>
