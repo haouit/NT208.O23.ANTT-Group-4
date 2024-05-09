@@ -46,9 +46,9 @@
 
 	#login {
 		border-style: solid;
-		padding: 1em;
-		margin: 1em;
-		width: 25em;
+		padding: 1em 2em 2em;
+		margin: 40px auto;
+		width: 30em;
 		border-radius: 1em;
 		text-align: center;
 		background: #fde3c8;
@@ -67,8 +67,8 @@
 		color: white;
 		text-shadow: 0 1px 0 rgba(255, 100, 100, 0.75);
 
-		margin-left: -1em;
-		margin-right: -1em;
+		margin-left: -2em;
+		margin-right: -2em;
 		margin-bottom: 1ex;
 
 		padding: 1ex;
@@ -94,7 +94,7 @@
 
 		&:focus {
 			outline: none;
-			border: 2px solid orangered;
+			border: 2px solid orange;
 		}
 
 		&:not(:last-child) {
