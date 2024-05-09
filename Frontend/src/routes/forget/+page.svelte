@@ -21,7 +21,7 @@
 </script>
 
 
-<div id="signin">
+<div id="forget">
     <h1><b>Reset password</b></h1>
     {#if isError}
 		<div class="error">{error}</div>
@@ -45,11 +45,11 @@
         box-sizing: border-box;
     }
 
-    #signin {
+    #forget {
         border-style: solid;
-        width: 25em;
-        padding: 1em;
-        margin: 1em;
+        width: 30em;
+        padding:1em 2em 2em;
+        margin: 130px auto;
         border-radius: 1em;
         text-align: center;
         background: #FDE3C8;
@@ -67,8 +67,8 @@
         color: white;
         text-shadow: 0 1px 0 rgba(255, 100, 100, 0.75);
 
-        margin-left: -1em;
-        margin-right: -1em;
+        margin-left: -2em;
+        margin-right: -2em;
         margin-bottom: 1ex;
 
         padding: 1ex;
@@ -81,7 +81,6 @@
     button {
         display: block;
         width: 100%;
-
         text-align: center;
         font-size: 1.1em;
         padding: 1ex;
@@ -94,7 +93,7 @@
 
         &:focus {
             outline: none;
-            border: 2px solid #3498DB;
+            border: 2px solid orange;
         }
 
         &:not(:last-child) {
