@@ -47,14 +47,13 @@
 
     #signin {
         border-style: solid;
-        width: 25em;
-        padding: 1em;
-        margin: 1em;
+        width: 30em;
+        padding: 1em 2em 2em;
         border-radius: 1em;
         text-align: center;
         background: #FDE3C8;
-        color: rgba(0, 0, 0, 0.75);
-
+        color: rgba(0, 0, 0, 0.75);    
+        margin: 40px auto;           
     }    
 /*Tiêu đề*/
     h1, button {
@@ -68,8 +67,8 @@
         color: white;
         text-shadow: 0 1px 0 rgba(255, 100, 100, 0.75);
 
-        margin-left: -1em;
-        margin-right: -1em;
+        margin-left: -2em;
+        margin-right: -2em;
         margin-bottom: 1ex;
 
         padding: 1ex;
@@ -96,7 +95,7 @@
 
         &:focus {
             outline: none;
-            border: 2px solid #3498DB;
+            border: 2px solid orange;
         }
 
         &:not(:last-child) {
