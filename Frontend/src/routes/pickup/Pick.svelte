@@ -37,6 +37,7 @@
 		</tr>
 		<div id="petdetail">
 			<tr id="pet">
+				<!--Cài đặt khi bấm vào thì sẽ phát ra tiếng-->
 				<td on:click={dogClick}>
 					<img src={dog} alt="Norway"/> <!-- Example of dynamic attribute -->
 				</td>
@@ -56,6 +57,8 @@
 			</tr>
 		</div>
 		<div style="display: flex; justify-content: center; margin: 40px;" class="select">
+			<!--Đã nối được sang petcare-->
+			<!--Vấn đề là làm sao để chọn con gì thì chọn hình con đó đặt vào-->
 			<button
 				type="button"><a href="./petcare">Chọn nuôi</a>
 			</button>
@@ -69,6 +72,12 @@
 		border-collapse: collapse;
 		border-radius: 13px;
 		background-color: #ffcdac;
+		padding: 1rem;
+		width: 75%;
+		max-width: 95rem; /*Xem lại thuộc tính này*/
+		margin: 1.5em;
+		box-sizing: border-box;
+
 	}
 	#select-pet {
 		display: flex;
@@ -102,7 +111,7 @@
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
+        font-size: 20px;
         margin: 4px 2px;
         cursor: pointer;
         border-radius: 10px;
