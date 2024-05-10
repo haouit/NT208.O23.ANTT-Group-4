@@ -2,20 +2,41 @@
 	import { goto } from '$app/navigation';
 	import { loggedIn } from '$lib/stores/logged_in';
 
+	const URL_API = 'http://localhost:5038'
 	$: error = 'Oh no, an error occured!';
 	$: isError = false;
 
-	let account = '';
-	let passwd = '';
+	let username = '';
+	let password = '';
 
-	function submitLogin() {
-		// logic here
-		if (account == '' || passwd == '') {
+	async function submitLogin() {
+		if (username == '' || password == '') {
 			isError = true;
 		} else {
-			isError = false;
-			loggedIn.set(true);
-			goto('/'); // failed to redirect
+			try {
+				const response = await fetch(`${URL_API}/api/users/login`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ 
+						username: username,
+						password: password
+					})
+				});
+
+				if (response.ok) {
+					isError = false;
+					loggedIn.set(true);
+					goto('/');
+				} else {
+					isError = true;
+					error = 'Invalid username or password';
+				}
+			} catch (error) {
+				isError = true;
+				error = 'An error occurred while logging in';
+			}
 		}
 	}
 </script>
@@ -26,14 +47,14 @@
 		<div class="error">{error}</div>
 	{/if}
 	<form>
-		<input bind:value={account} placeholder="Username" />
-		<input bind:value={passwd} type="password" placeholder="Password" />
+		<input bind:value={username} placeholder="Username" />
+		<input bind:value={password} type="password" placeholder="Password" />
 		<div class="signup-forgot">
 			<button type="button" class="open-button"><a href="/signup">Sign up</a> </button>
 			<button type="button" class="open-button"><a href="/forget">Forget Password</a> </button>
 		</div>
 
-		<button type="submit" class="button_submit" on:click={submitLogin}><a href = "/">Sign in</a></button>
+		<button type="submit" class="button_submit" on:click={submitLogin}>Sign in</button>
 	</form>
 </div>
 
@@ -107,7 +128,7 @@
 		justify-content: space-between;
 		margin-bottom: 1ex;
 	}
-/*button là forget passwd vs sign up*/
+/*button là forget password vs sign up*/
 	button {
 		padding: 1ex;
 		border: 2px solid #ecf0f1;
@@ -142,7 +163,7 @@
 			color: white;
 
 		}
-/*Cài đặt này dành cho button forget passwd và signUp*/
+/*Cài đặt này dành cho button forget password và signUp*/
 	a {
 		text-decoration: none;
 		color: #181818;

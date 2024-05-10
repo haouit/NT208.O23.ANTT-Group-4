@@ -2,23 +2,43 @@
 	import { goto } from '$app/navigation';
 	import { loggedIn } from '$lib/stores/logged_in';
 
+    const URL_API = 'http://localhost:5038'
 	$: error = 'Oh no, an error occured!';
 	$: isError = false;
 
-	let Username = '';
-    let email = '';
-    let passwd = '';
+	let username = '';
+    let password = '';
+    let re_password = '';
 
-	function submitLogin() {
-		// logic here
-		if (Username == '' || email == '' || passwd == '') {
-			isError = true;
-		} else {
-			isError = false;
-			//loggedIn.set(false);
-			goto('/login'); // failed to redirect
-		}
-	}
+    async function submitLogin() {
+        if (username == '' || password == '' || re_password == '' || password != re_password) {
+            isError = true;
+        } else {
+            isError = false;
+            try {
+                const response = await fetch(`${URL_API}/api/users/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        username: username, 
+                        password: password
+                    })
+                });
+                if (response.ok) {
+                    //loggedIn.set(false);
+                    goto('/login');
+                } else {
+                    isError = true;
+                    error = 'Failed to sign up. Please try again.';
+                }
+            } catch (error) {
+                isError = true;
+                error = 'An error occurred. Please try again.';
+            }
+        }
+    }
 </script>
 
 <div id="signin">
@@ -27,12 +47,11 @@
 		<div class="error">{error}</div>
 	{/if}
     <form>
-        <input bind:value={Username} type="text" placeholder="Username" />
-        <input bind:value={email} type="email" placeholder="Email" />
-        <input bind:value={passwd} type="password" placeholder="Password" />
+        <input bind:value={username} type="text" placeholder="Username" />
+        <input bind:value={password} type="password" placeholder="Password" />
+        <input bind:value={re_password} type="password" placeholder="Re-enter password" />
 
-
-        <button type="submit" class="button_submit" on:click={submitLogin}><a href="login">Sign Up</a></button>
+        <button type="submit" class="button_submit" on:click={submitLogin}>Sign Up</button>
     </form>
 </div>
 
@@ -115,11 +134,5 @@
             
 		}
 	}
-
-    .button_submit a {
-     
-		text-decoration: none;
-        color: white;
-    }
 
 </style>
