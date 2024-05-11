@@ -159,10 +159,6 @@
 	
 	}
 
-	.button_submit a {
-			color: white;
-
-		}
 /*Cài đặt này dành cho button forget password và signUp*/
 	a {
 		text-decoration: none;
