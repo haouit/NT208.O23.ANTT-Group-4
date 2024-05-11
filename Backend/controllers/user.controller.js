@@ -21,9 +21,22 @@ const getUserById = async (req, res) => {
 
 const createUser = async (req, res) => {
 	try {
+		const { username, password, re_password } = req.body;
+		if (!username || !password || !re_password) {
+			return res.status(400).json({ message: 'Missing fields' });
+		}
+
+		if (password !== re_password) {
+			return res.status(400).json({ message: 'Passwords do not match' });
+		}
+
+		if (await User.findOne({ username: username })) {
+			return res.status(400).json({ message: 'User already exists' });
+		}
+
 		const hashedPassword = await bcrypt.hash(req.body.password, 10);
 		const user = new User({
-			username: req.body.username,
+			username: username,
 			password: hashedPassword
 		});
 		const result = await user.save();
