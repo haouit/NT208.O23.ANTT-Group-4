@@ -2,29 +2,27 @@
 	import dog from '$lib/images/dog.jpg';
 	import cat from '$lib/images/cat.jpg';
 	import chinchilla from '$lib/images/chinchilla.jpg';
-
     import dog_sound from '$lib/sounds/happy-puppy-barks-741.wav';
     import cat_sound from '$lib/sounds/cartoon-little-cat-meow.wav';
     import chinchilla_sound from '$lib/sounds/chinchilla-bquiek1.mp3';
-
+	import {pet_chosen} from '$lib/stores/pet_chosen'
 	$: title = `<strong>Chọn thú cưng</strong>`;
-
-    let pet_chosen = 0;
 
     function dogClick() {
         const audio = new Audio(dog_sound);
         audio.play();
-        pet_chosen = 1;
+        pet_chosen.set(1);
     }
     function chinchillaClick() {
         const audio = new Audio(chinchilla_sound);
         audio.play();
-        pet_chosen = 2;
+        pet_chosen.set(2);
     }
     function catClick() {
         const audio = new Audio(cat_sound);
         audio.play();
-        pet_chosen = 3;
+        pet_chosen.set(3);
+
     }
 </script>
 
@@ -59,8 +57,9 @@
 		<div style="display: flex; justify-content: center; margin: 40px;" class="select">
 			<!--Đã nối được sang petcare-->
 			<!--Vấn đề là làm sao để chọn con gì thì chọn hình con đó đặt vào-->
-			<button
-				type="button"><a href="./petcare">Chọn nuôi</a>
+			<button type="button">
+				<a href="./petcare">Chọn nuôi</a>
+				
 			</button>
 		</div>
 	</table>
