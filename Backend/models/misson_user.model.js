@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');	
 
-const achieveSchema = mongoose.Schema({
-	itemId: {
+const minsson_userSchema = mongoose.Schema({
+	missionID: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Achievement',
+		ref: 'Mission',
 		required: true
 	},
 	userId: {
@@ -16,6 +16,6 @@ const achieveSchema = mongoose.Schema({
 	timestamps: true
 });
 
-const Achieve = mongoose.model('achieves', achieveSchema);
+const Misson_User = mongoose.model('misson_users', minsson_userSchema);
 
-module.exports = Achieve;
+module.exports = Misson_User;

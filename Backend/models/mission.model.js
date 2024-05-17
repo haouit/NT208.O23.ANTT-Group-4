@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const achievementSchema = mongoose.Schema({
+const missionSchema = mongoose.Schema({
 	name: {
 		type: String,
 		required: true
 	},
-    exp: {
+    coin: {
         type: Number,
         required: true
     }
@@ -14,6 +14,6 @@ const achievementSchema = mongoose.Schema({
 	timestamps: true
 });
 
-const Achievement = mongoose.model('achievements', achievementSchema);
+const Mission = mongoose.model('missions', missionSchema);
 
-module.exports = Achievement;
+module.exports = Mission;

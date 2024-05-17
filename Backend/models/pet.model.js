@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const itemSchema = mongoose.Schema({
+const petSchema = mongoose.Schema({
 	name: {
 		type: String,
 		required: true
@@ -22,6 +22,6 @@ const itemSchema = mongoose.Schema({
 	timestamps: true
 });
 
-const Item = mongoose.model('pets', itemSchema);
+const Item = mongoose.model('pets', petSchema);
 
 module.exports = Item;
