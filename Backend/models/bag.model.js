@@ -11,11 +11,6 @@ const bagSchema = mongoose.Schema({
 		ref: 'User',
 		required: true
 	},
-	name: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User',
-		required: true
-	},
 	quantity: {
 		type: Number,
 		required: true
