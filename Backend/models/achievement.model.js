@@ -14,6 +14,6 @@ const itemSchema = mongoose.Schema({
 	timestamps: true
 });
 
-const Item = mongoose.model('pets', itemSchema);
+const Item = mongoose.model('achievements', itemSchema);
 
 module.exports = Item;
