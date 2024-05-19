@@ -24,7 +24,7 @@ const getAchieveById = async (req, res) => {
 const createAchieve = async (req, res) => {
     try {
         const achieve = await Achieve.create({
-            achievement: req.body.achieveId,
+            achievementId: req.body.achieveId,
             userId: req.body.userId
         });
         res.status(200).json(achieve);
