@@ -4,12 +4,22 @@
 		import avatar from '$lib/images/avatar_cat_developer.png';		
 		import chat_button from '$lib/images/chat.png';
 		import { pet_chosen } from '$lib/stores/pet_chosen';
-		import cat_play from '$lib/images/meo_play.gif'
 		import chin_clean from '$lib/images/chin_clean.gif'
 		import chin_sleep from '$lib/images/chin_sleep.gif'
 		import chin_play from '$lib/images/chin_play.gif'
 		import chin_train from '$lib/images/chin_train.gif'
 		import chin_eat from '$lib/images/chin_eat.gif'
+		import dog from '$lib/images/dog.gif'
+		import dog_clean from '$lib/images/dog_clean.gif'
+		import dog_feed from '$lib/images/dog_feed.gif'
+		import dog_play from '$lib/images/dog_play.gif'
+		import dog_train from '$lib/images/dog_train.gif'
+		import cat from '$lib/images/cat.gif'
+		import cat_clean from '$lib/images/cat_clean.gif'
+		import cat_eat from '$lib/images/cat_eat.gif'
+		import cat_play from '$lib/images/cat_play.gif'
+		import cat_train from '$lib/images/cat_train.gif'
+		
 	
 		/*Cài đặt của Feed*/
 		let canFeed = true;
@@ -137,15 +147,15 @@
 		
 		{#if sad}
 			{#if $pet_chosen == 1}
-				<img class="img_pet" src= alt="cat pet" />
+				<img class="img_pet" src={dog} alt="cat pet" />
 			{:else if $pet_chosen == 2} 
 				<img class="img_pet" src={chin_sleep} alt="cat pet" />
 			{:else if $pet_chosen == 3}
-				<img class="img_pet" src=https://i.pinimg.com/originals/64/14/40/6414409adb5d8ef8957ace623b1fe8da.gif alt="cat pet" />
+				<img class="img_pet" src={cat} alt="cat pet" />
 			{/if}
  	 	{:else if play}
 		  	{#if $pet_chosen == 1}
-		  		<img class="img_pet" src=https://i.pinimg.com/originals/bd/d8/4c/bdd84cc8ecf1058b0948286190907f61.gif alt="cat pet" />
+		  		<img class="img_pet" src={dog_play} alt="cat pet" />
 	  		{:else if $pet_chosen == 2} 
 		  		<img class="img_pet" src={chin_play} alt="cat pet" />
 	  		{:else if $pet_chosen == 3}
@@ -153,27 +163,27 @@
 			{/if}
 		{:else if feed}
 			{#if $pet_chosen == 1}
-				<img class="img_pet" src=https://i.pinimg.com/originals/a9/f1/ee/a9f1eed3385a9eff5709ac3dcd04fef3.gif alt="cat pet" />
+				<img class="img_pet" src={dog_feed} alt="cat pet" />
 			{:else if $pet_chosen == 2} 
 				<img class="img_pet" src={chin_eat} alt="cat pet" />
 			{:else if $pet_chosen == 3}
-				<img class="img_pet" src=https://i.pinimg.com/originals/e5/b7/36/e5b736ec57080f408221e5c958d06ec8.gif alt="cat pet" />
+				<img class="img_pet" src={cat_eat} alt="cat pet" />
   			{/if}
 		{:else if clean }
 			{#if $pet_chosen == 1}
-				<img class="img_pet" src=https://i.pinimg.com/originals/a9/f1/ee/a9f1eed3385a9eff5709ac3dcd04fef3.gif alt="cat pet" />
+				<img class="img_pet" src={dog_clean} alt="cat pet" />
 			{:else if $pet_chosen == 2} 
 				<img class="img_pet" src={chin_clean} alt="cat pet" />
 			{:else if $pet_chosen == 3}
-				<img class="img_pet" src=https://i.pinimg.com/originals/7c/3f/29/7c3f2916ed7f7d39803e4a2afaf0e642.gif alt="cat pet" />
+				<img class="img_pet" src={cat_clean} alt="cat pet" />
 			{/if}
 		{:else if train }
 			{#if $pet_chosen == 1}
-				<img class="img_pet" src=https://i.pinimg.com/originals/a9/f1/ee/a9f1eed3385a9eff5709ac3dcd04fef3.gif alt="cat pet" />
+				<img class="img_pet" src={dog_train} alt="cat pet" />
 			{:else if $pet_chosen == 2} 
 				<img class="img_pet" src={chin_train} alt="cat pet" />
 			{:else if $pet_chosen == 3}
-				<img class="img_pet" src=https://i.pinimg.com/originals/7c/3f/29/7c3f2916ed7f7d39803e4a2afaf0e642.gif alt="cat pet" />
+				<img class="img_pet" src={cat_train} alt="cat pet" />
 			{/if}
  	 	{/if}
 		
