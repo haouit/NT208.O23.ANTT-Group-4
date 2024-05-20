@@ -1,24 +1,24 @@
 	<!--File này dùng cho petcare-->
 <script>
 		import { loggedIn } from '$lib/stores/logged_in.js';
-		import avatar from '$lib/images/avatar_cat_developer.png';		
+		import avatar from '$lib/images/avatar_cat_developer.png';
 		import chat_button from '$lib/images/chat.png';
 		import { pet_chosen } from '$lib/stores/pet_chosen';
-		import chin_clean from '$lib/images/chin_clean.gif'
-		import chin_sleep from '$lib/images/chin_sleep.gif'
-		import chin_play from '$lib/images/chin_play.gif'
-		import chin_train from '$lib/images/chin_train.gif'
-		import chin_eat from '$lib/images/chin_eat.gif'
-		import dog from '$lib/images/dog.gif'
-		import dog_clean from '$lib/images/dog_clean.png'
-		import dog_feed from '$lib/images/dog_feed.gif'
-		import dog_play from '$lib/images/dog_play.gif'
-		import dog_train from '$lib/images/dog_train.gif'
-		import cat from '$lib/images/cat.png'
-		import cat_clean from '$lib/images/cat_clean.png'
-		import cat_eat from '$lib/images/cat_eat.gif'
-		import cat_play from '$lib/images/cat_play.gif'
-		import cat_train from '$lib/images/cat_train.gif'
+		import chin_clean from '$lib/images/chin_clean.gif';
+		import chin_sleep from '$lib/images/chin_sleep.gif';
+		import chin_play from '$lib/images/chin_play.gif';
+		import chin_train from '$lib/images/chin_train.gif';
+		import chin_eat from '$lib/images/chin_eat.gif';
+		import dog from '$lib/images/dog.gif';
+		import dog_clean from '$lib/images/dog_clean.png';
+		import dog_feed from '$lib/images/dog_feed.gif';
+		import dog_play from '$lib/images/dog_play.gif';
+		import dog_train from '$lib/images/dog_train.gif';
+		import cat from '$lib/images/cat.png';
+		import cat_clean from '$lib/images/cat_clean.png';
+		import cat_eat from '$lib/images/cat_eat.gif';
+		import cat_play from '$lib/images/cat_play.gif';
+		import cat_train from '$lib/images/cat_train.gif';
 		
 	
 		/*Cài đặt của Feed*/
