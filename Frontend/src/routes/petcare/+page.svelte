@@ -143,7 +143,7 @@
 		  	{#if $pet_chosen == 1}
 		  		<img class="img_pet" src=https://i.pinimg.com/originals/bd/d8/4c/bdd84cc8ecf1058b0948286190907f61.gif alt="cat pet" />
 	  		{:else if $pet_chosen == 2} 
-		  		<img class="img_pet" src=https://i.pinimg.com/originals/20/a9/06/20a9065d70cd3d688ecad9edde1eb7d6.gif alt="cat pet" />
+		  		<img class="img_pet" src={chin_play} alt="cat pet" />
 	  		{:else if $pet_chosen == 3}
 		  		<img class="img_pet" src={cat_play} alt="cat pet" />
 			{/if}
@@ -151,7 +151,7 @@
 			{#if $pet_chosen == 1}
 				<img class="img_pet" src=https://i.pinimg.com/originals/a9/f1/ee/a9f1eed3385a9eff5709ac3dcd04fef3.gif alt="cat pet" />
 			{:else if $pet_chosen == 2} 
-				<img class="img_pet" src=https://i.pinimg.com/originals/aa/82/18/aa8218099d3f60329e12bdfd2ff5a8cd.gif alt="cat pet" />
+				<img class="img_pet" src={chin_eat} alt="cat pet" />
 			{:else if $pet_chosen == 3}
 				<img class="img_pet" src=https://i.pinimg.com/originals/e5/b7/36/e5b736ec57080f408221e5c958d06ec8.gif alt="cat pet" />
   			{/if}
@@ -167,7 +167,7 @@
 			{#if $pet_chosen == 1}
 				<img class="img_pet" src=https://i.pinimg.com/originals/a9/f1/ee/a9f1eed3385a9eff5709ac3dcd04fef3.gif alt="cat pet" />
 			{:else if $pet_chosen == 2} 
-				<img class="img_pet" src=https://i.pinimg.com/originals/aa/82/18/aa8218099d3f60329e12bdfd2ff5a8cd.gif alt="cat pet" />
+				<img class="img_pet" src={chin_train} alt="cat pet" />
 			{:else if $pet_chosen == 3}
 				<img class="img_pet" src=https://i.pinimg.com/originals/7c/3f/29/7c3f2916ed7f7d39803e4a2afaf0e642.gif alt="cat pet" />
 			{/if}
