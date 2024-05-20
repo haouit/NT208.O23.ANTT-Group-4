@@ -133,7 +133,7 @@
 		
 		{#if sad}
 			{#if $pet_chosen == 1}
-				<img class="img_pet" src=https://i.pinimg.com/originals/10/c1/bb/10c1bbf5a3b538c2ca58be323b1c105b.gif alt="cat pet" />
+				<img class="img_pet" src={chin_sleep} alt="cat pet" />
 			{:else if $pet_chosen == 2} 
 				<img class="img_pet" src=https://i.pinimg.com/originals/e3/3d/fe/e33dfed953061fd4a56c157b0c1a3251.gif alt="cat pet" />
 			{:else if $pet_chosen == 3}
