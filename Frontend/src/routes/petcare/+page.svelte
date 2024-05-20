@@ -10,7 +10,7 @@
 		import chin_train from '$lib/images/chin_train.gif'
 		import chin_eat from '$lib/images/chin_eat.gif'
 		import dog from '$lib/images/dog.gif'
-		import dog_clean from '$lib/images/dog_clean.gif'
+		import dog_clean from '$lib/images/dog_clean.png'
 		import dog_feed from '$lib/images/dog_feed.gif'
 		import dog_play from '$lib/images/dog_play.gif'
 		import dog_train from '$lib/images/dog_train.gif'
