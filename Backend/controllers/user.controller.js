@@ -1,13 +1,30 @@
-const User = require('../models/user.model');
+require('dotenv').config();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const User = require('../models/user.model');
 
-const getAllUsers = async (req, res) => {
-	try {
-		const users = await User.find();
-		res.status(200).json(users);
-	} catch (error) {
-		res.status(500).json({ message: error.message });
-	}
+const getAllUsers = async (req, res, next) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        const user = await new Promise((resolve, reject) => {
+            jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(user);
+                }
+            });
+        });
+
+        const users = await User.find();
+        res.status(200).json(users);
+    } catch (error) {
+        if (error instanceof jwt.JsonWebTokenError) {
+            res.status(403).json({ message: 'Invalid or expired token' });
+        } else {
+            res.status(500).json({ message: error.message });
+        }
+    }
 };
 
 const getUserById = async (req, res) => {
@@ -49,17 +66,20 @@ const createUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
 	try {
-		const user = await User.findOne({ username: req.body.username });
+		const { username, password } = req.body;
+		const user = await User.findOne({ username: username });
 		if (!user) {
 			return res.status(400).json({ message: 'User not found' });
 		}
-		if (await bcrypt.compare(req.body.password, user.password)) {
+		if (await bcrypt.compare(password, user.password)) {
 			console.log('[User] Logged in: ' + user.username);
-			return res.status(200).json({ message: 'Login successful' });
+
+			// Create JWT
+			const accessToken = jwt.sign({ user: user.username }, process.env.ACCESS_TOKEN_SECRET);
+			return res.status(200).json({ accessToken });
 		}
 		res.status(400).json({ message: 'Invalid credentials' });
-	}
-	catch (error) {
+	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}
 }
@@ -73,8 +93,7 @@ const updateUser = async (req, res) => {
 		const result = await user.save();
 		res.status(200).json(result);
 		console.log('[User] Updated: ' + user.username);
-	}
-	catch (error) {
+	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}
 }
