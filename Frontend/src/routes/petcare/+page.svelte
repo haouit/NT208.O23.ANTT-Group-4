@@ -6,6 +6,10 @@
 		import { pet_chosen } from '$lib/stores/pet_chosen';
 		import cat_play from '$lib/images/meo_play.gif'
 		import chin_clean from '$lib/images/chin_clean.gif'
+		import chin_sleep from '$lib/images/chin_sleep.gif'
+		import chin_play from '$lib/images/chin_play.gif'
+		import chin_train from '$lib/images/chin_train.gif'
+		import chin_eat from '$lib/images/chin_eat.gif'
 	
 		/*Cài đặt của Feed*/
 		let canFeed = true;
@@ -133,9 +137,9 @@
 		
 		{#if sad}
 			{#if $pet_chosen == 1}
-				<img class="img_pet" src={chin_sleep} alt="cat pet" />
+				<img class="img_pet" src= alt="cat pet" />
 			{:else if $pet_chosen == 2} 
-				<img class="img_pet" src=https://i.pinimg.com/originals/e3/3d/fe/e33dfed953061fd4a56c157b0c1a3251.gif alt="cat pet" />
+				<img class="img_pet" src={chin_sleep} alt="cat pet" />
 			{:else if $pet_chosen == 3}
 				<img class="img_pet" src=https://i.pinimg.com/originals/64/14/40/6414409adb5d8ef8957ace623b1fe8da.gif alt="cat pet" />
 			{/if}
