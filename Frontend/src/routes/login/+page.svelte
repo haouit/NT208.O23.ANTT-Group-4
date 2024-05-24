@@ -27,7 +27,10 @@
 
 				if (response.ok) {
 					isError = false;
-					loggedIn.set(true);
+					console.log('Login success');
+					// set cookie
+					const data = await response.json();
+					document.cookie = `jwt=${data.token}; path=/`;
 					goto('/');
 				} else {
 					isError = true;
@@ -46,7 +49,7 @@
 	{#if isError}
 		<div class="error">{error}</div>
 	{/if}
-	<form>
+	<form on:submit|preventDefault={submitLogin}>
 		<input bind:value={username} placeholder="Username" />
 		<input bind:value={password} type="password" placeholder="Password" />
 		<div class="signup-forgot">
@@ -54,7 +57,7 @@
 			<button type="button" class="open-button"><a href="/forget">Forget Password</a> </button>
 		</div>
 
-		<button type="submit" class="button_submit" on:click={submitLogin}>Sign in</button>
+		<button type="submit" class="button_submit">Sign in</button>
 	</form>
 </div>
 
