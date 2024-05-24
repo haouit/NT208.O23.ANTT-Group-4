@@ -2,6 +2,7 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.model');
+const { authenticate } = require('passport');
 
 const getAllUsers = async (req, res, next) => {
     try {
@@ -75,8 +76,11 @@ const loginUser = async (req, res) => {
 			console.log('[User] Logged in: ' + user.username);
 
 			// Create JWT
-			const accessToken = jwt.sign({ user: user.username }, process.env.ACCESS_TOKEN_SECRET);
-			return res.status(200).json({ accessToken });
+			const accessToken = jwt.sign({ user: user.username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+			res.cookie('jwt', accessToken, {
+				httpOnly: true
+			});
+			return res.status(200).json({ token: accessToken });
 		}
 		res.status(400).json({ message: 'Invalid credentials' });
 	} catch (error) {

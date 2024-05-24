@@ -7,10 +7,13 @@ passport.use(new LocalStrategy(User.authenticate()));
 const router = express.Router();
 const { getAllUsers, getUserById, createUser, loginUser, updateUser } = require('../controllers/user.controller');
 
-router.get('/all', getAllUsers);
-router.get('/id/:id', getUserById);
+const { requireAuth, checkUser } = require('../middleware/auth');
+
+router.get('*', checkUser);
+router.get('/all', requireAuth, getAllUsers);
+router.get('/id/:id', requireAuth, getUserById);
 router.post('/register', createUser);
 router.post('/login', loginUser);
-router.put('/update/:id', updateUser);
+router.put('/update/:id', requireAuth, updateUser);
 
 module.exports = router;

@@ -1,7 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const fs = require('fs');
+
+const { requireAuth } = require('./middleware/auth');
 
 const userRouter = require('./routers/user.route');
 const billRouter = require('./routers/bill.route');
@@ -18,6 +21,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 
 // routes
@@ -31,6 +35,11 @@ app.get('/', (req, res) => {
 	res.send('Hello World!');
 });
 
+app.get('/protected', requireAuth, (req, res) => {
+	res.send('You are authenticated!');
+});
+
+
 app.listen(5038, () => {
 	console.log('Server started on http://localhost:5038');
 });
@@ -40,7 +49,7 @@ mongoose.connect(URL_CONNECTION)
 		console.log('Connected to MongoDB');
 	})
 	.catch((error) => {
-		console.log('Connection failed');
+		console.log('Connection to MongoDB failed');
 		console.log(error);
 	});
 	
