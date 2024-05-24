@@ -12,11 +12,6 @@ const mission_userRouter = require('./routers/mission_user.route');
 const pet_ownerRouter = require('./routers/pet_owner.route');
 const achieverRouter = require('./routers/achieve.route');
 
-const urlConnectionData = fs.readFileSync('url_connection.json', 'utf8');
-const urlConnection = JSON.parse(urlConnectionData);
-
-const URL_CONNECTION = urlConnection.url;
-
 const app = express();
 
 // Middleware
@@ -44,7 +39,7 @@ app.listen(5038, () => {
 	console.log('Server started on http://localhost:5038');
 });
 
-mongoose.connect(URL_CONNECTION)
+mongoose.connect(process.env.MONGO_URI)
 	.then(() => {
 		console.log('Connected to MongoDB');
 	})
