@@ -1,5 +1,25 @@
 <script>
-    
+    import { URL_API, cookie } from '../checkToken';
+    import { onMount } from 'svelte';
+
+    let user = { username: '', _id: '', level: '', coin: '' };
+
+    onMount(async () => {
+        const id = localStorage.getItem('id');
+        const response = await fetch(`${URL_API}/api/users/id/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+				'Authorization': `Bearer ${cookie()}`
+            }
+        });
+        if (response.ok) {
+            user = await response.json();
+        } else {
+            console.error('Failed to fetch user data');
+        }
+        console.log(user.username);
+    });
 </script>
 
 <div style="display: flex; justify-content: center; align-items: center;">
@@ -10,23 +30,20 @@
             <img src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/avatar-icon.png" alt="Avatar" style="width:20%">
             <table>
                 <tr>
-                    <td>Name:</td>
-                    <td>Meo Meo</td>
+                    <td>Userame:</td>
+                    <td>{user.username}</td>
+                    
                  </tr>
                 <tr>
                     <td>ID:</td>
-                    <td>22520000</td>
-                <tr>
-                    <td>Email:</td>
-                    <td>meo@cat.com</td>
-                </tr>
+                    <td>{user._id}</td>
                 <tr>
                     <td>Level:</td>
-                    <td>1</td>
+                    <td>{user.level}</td>
                 </tr>
                 <tr>
                     <td>Coin:</td>
-                    <td>100</td>
+                    <td>{user.coin}</td>
                 </tr>
                 <tr>
                     <td colspan="2"><a href="/change-Info">Change Information</a></td>
