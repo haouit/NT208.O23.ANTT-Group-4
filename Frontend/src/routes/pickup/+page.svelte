@@ -1,5 +1,11 @@
 <script>
     import Pick from './Pick.svelte';
+	import { onMount } from 'svelte';
+	import { checkToken } from '../checkToken';
+
+	onMount(async () => {
+		await checkToken();
+	});
 </script>
 
 <svelte:head>
