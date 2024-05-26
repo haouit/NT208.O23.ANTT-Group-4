@@ -1,8 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { loggedIn } from '$lib/stores/logged_in';
+    import { URL_API } from '../checkToken';
 
-    const URL_API = 'http://localhost:5038'
 	$: error = 'Oh no, an error occured!';
 	$: isError = false;
 
