@@ -1,6 +1,5 @@
 	<!--File này dùng cho petcare-->
 <script>
-		import avatar from '$lib/images/avatar_cat_developer.png';
 		import chat_button from '$lib/images/chat.png';
 		import { pet_chosen } from '$lib/stores/pet_chosen';
 		import chin_clean from '$lib/images/chin_clean.gif';
@@ -125,10 +124,6 @@
 </script>
 <div class="background">
 		
-	<!--Nút User-->
-	<div class="icon">
-		<a href="/user"><img src={avatar} alt="search" style="width:60px; height:60px;" /></a>
-	</div>
 	<!--Thanh điều hướng của pet care-->
 	<div class="grid-container">
 		<nav>
@@ -223,12 +218,6 @@
 			position: fixed;
 			bottom: 25px;
 			left: 25px;
-		}
-
-		.icon {
-			position: fixed;
-			top: 10px;
-			right: 15px;
 		}
 
 		.grid-container {

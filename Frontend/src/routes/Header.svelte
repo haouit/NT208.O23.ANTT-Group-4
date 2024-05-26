@@ -1,10 +1,16 @@
 <!--File này chứa thanh điều hướng-->
 <script>
 	import logo from '$lib/images/logo.png';
+	import avatar from '$lib/images/avatar_cat_developer.png';
 	import { loggedIn } from '$lib/stores/logged_in.js';
+
+	const loadHeader = () => {
+		let data = localStorage.getItem('id');
+		loggedIn.set( data ? true : false );
+	}
 </script>
 
-<header>
+<header on:load|preventDefault|once={loadHeader}>
 	<!--Thanh điều hướng-->
 	<div class="menu">
 		<nav>
@@ -18,13 +24,16 @@
 				<li class="menu_list"><a href="petcare">Pet care</a></li>
 				<!--<li class="menu_list"><a href="#group">Forum</a></li>-->
 				
+				<ul class="top_icon">
 				{#if !$loggedIn}
-					<ul class="top_icon">
-						<li class="login"><a href="/login">Login</a></li>
-
-						<li class="signup"><a href="/signup">Signup</a></li>
-					</ul>
+					<li><a href="/login">Login</a></li>
+					<li><a href="/signup">Signup</a></li>
+				{:else}
+					<li style=""><a href="/signup">Log out</a></li>
+					<a id='icon' href="/user"><img src={avatar} alt="search" style="width:60px; height:60px;" /></a>
 				{/if}
+				</ul>
+
 			</ul>
 		</nav>
 	</div>
@@ -86,5 +95,11 @@
 			500ms: thời gian chuyển đổi là 500 mili giây
 			ease-in out: hàm chuyển đổi điều chỉnh tốc độ của hiệu ứng chuyển đổi */
 		}
+	}
+
+	#icon {
+		position: relative;
+		top: 10px;
+		right: 15px;
 	}
 </style>
