@@ -69,7 +69,6 @@ const loginUser = async (req, res) => {
 		if (await bcrypt.compare(password, user.password)) {
 			console.log('[User] Logged in: ' + user.username);
 			const id = user._id;
-			console.log({id});
 			// Create JWT
 			const accessToken = jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
 			res.cookie('jwt', accessToken, {
