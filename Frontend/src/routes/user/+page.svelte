@@ -46,7 +46,7 @@
                     <td>{user.coin}</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><a href="/change-Info">Change Information</a></td>
+                    <td colspan="2"><a href="/change_Info">Change Information</a></td>
                 </tr>
             </table>
         </div>
