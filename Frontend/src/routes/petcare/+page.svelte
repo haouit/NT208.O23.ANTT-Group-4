@@ -134,7 +134,7 @@
 		<nav>
 			<ul>	
 				<li><a href="/shop">Shop</a></li>
-				<li ><a href="/chat">Group</a></li>
+				<li ><a href="#chat">Group</a></li>
 				<li><a href="/mission">Mission</a></li>
 			</ul>
 		</nav>
