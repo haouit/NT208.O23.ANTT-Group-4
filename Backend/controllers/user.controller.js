@@ -2,7 +2,6 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.model');
-const { authenticate } = require('passport');
 
 const getAllUsers = async (req, res, next) => {
     try {
@@ -39,23 +38,18 @@ const getUserById = async (req, res) => {
 
 const createUser = async (req, res) => {
 	try {
-		const { username, password, re_password } = req.body;
-		if (!username || !password || !re_password) {
-			return res.status(400).json({ message: 'Missing fields' });
-		}
-
-		if (password !== re_password) {
-			return res.status(400).json({ message: 'Passwords do not match' });
-		}
+		const { username, password } = req.body;
 
 		if (await User.findOne({ username: username })) {
 			return res.status(400).json({ message: 'User already exists' });
 		}
 
-		const hashedPassword = await bcrypt.hash(req.body.password, 10);
+		const hashedPassword = await bcrypt.hash(password, 10);
 		const user = new User({
 			username: username,
-			password: hashedPassword
+			password: hashedPassword,
+			level: 0,
+			coin: 100
 		});
 		const result = await user.save();
 		res.status(200).json(result);
@@ -74,13 +68,14 @@ const loginUser = async (req, res) => {
 		}
 		if (await bcrypt.compare(password, user.password)) {
 			console.log('[User] Logged in: ' + user.username);
-
+			const id = user._id;
+			console.log({id});
 			// Create JWT
-			const accessToken = jwt.sign({ user: user.username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+			const accessToken = jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
 			res.cookie('jwt', accessToken, {
 				httpOnly: true
 			});
-			return res.status(200).json({ token: accessToken });
+			return res.status(200).json({ id, token: accessToken });
 		}
 		res.status(400).json({ message: 'Invalid credentials' });
 	} catch (error) {

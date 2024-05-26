@@ -10,8 +10,12 @@ const userSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-	name: {
-		type: String,
+	level: {
+		type: Number,
+		required: true
+	},
+	coin: {
+		type: Number,
 		required: true
 	}
 },
