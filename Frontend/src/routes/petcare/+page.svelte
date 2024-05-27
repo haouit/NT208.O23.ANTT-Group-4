@@ -17,7 +17,7 @@
 		import cat_eat from '$lib/images/cat_eat.gif';
 		import cat_play from '$lib/images/cat_play.gif';
 		import cat_train from '$lib/images/cat_train.gif';
-		
+		import { loggedIn } from '$lib/stores/logged_in.js';
 		import { onMount } from 'svelte';
 		import { checkToken } from '../checkToken.js';
 
@@ -122,95 +122,95 @@
 		}
 		
 </script>
+
+	
+
 <div class="background">
+	{#if $loggedIn}	
+		<!--Thanh điều hướng của pet care-->
+		<div class="grid-container">
+			<nav>
+				<ul>	
+					<li><a href="/shop">Shop</a></li>
+					<li ><a href="#chat">Group</a></li>
+					<li><a href="/mission">Mission</a></li>
+				</ul>
+			</nav>
+
+		</div>
+
 		
-	<!--Thanh điều hướng của pet care-->
-	<div class="grid-container">
-		<nav>
-			<ul>	
-				<li><a href="/shop">Shop</a></li>
-				<li ><a href="#chat">Group</a></li>
-				<li><a href="/mission">Mission</a></li>
-			</ul>
-		</nav>
+		<!--Thanh trạng thái của pet-->
+		<div class="status">
+			<span> Status: {status} </span>
+			<span> Level: {level} </span>
+			<span> Exp: {exp} </span>
+		</div>
+		
+		{#if sad}
+			{#if $pet_chosen == 1}
+				<img class="img_pet" src={dog} alt="cat pet" />
+			{:else if $pet_chosen == 2} 
+				<img class="img_pet" src={chin_sleep} alt="cat pet" />
+			{:else if $pet_chosen == 3}
+				<img class="img_pet" src={cat} alt="cat pet" />
+			{/if}
+		{:else if play}
+			{#if $pet_chosen == 1}
+				<img class="img_pet" src={dog_play} alt="cat pet" />
+			{:else if $pet_chosen == 2} 
+				<img class="img_pet" src={chin_play} alt="cat pet" />
+			{:else if $pet_chosen == 3}
+				<img class="img_pet" src={cat_play} alt="cat pet" />
+			{/if}
+		{:else if feed}
+			{#if $pet_chosen == 1}
+				<img class="img_pet" src={dog_feed} alt="cat pet" />
+			{:else if $pet_chosen == 2} 
+				<img class="img_pet" src={chin_eat} alt="cat pet" />
+			{:else if $pet_chosen == 3}
+				<img class="img_pet" src={cat_eat} alt="cat pet" />
+			{/if}
+		{:else if clean }
+			{#if $pet_chosen == 1}
+				<img class="img_pet" src={dog_clean} alt="cat pet" />
+			{:else if $pet_chosen == 2} 
+				<img class="img_pet" src={chin_clean} alt="cat pet" />
+			{:else if $pet_chosen == 3}
+				<img class="img_pet" src={cat_clean} alt="cat pet" />
+			{/if}
+		{:else if train }
+			{#if $pet_chosen == 1}
+				<img class="img_pet" src={dog_train} alt="cat pet" />
+			{:else if $pet_chosen == 2} 
+				<img class="img_pet" src={chin_train} alt="cat pet" />
+			{:else if $pet_chosen == 3}
+				<img class="img_pet" src={cat_train} alt="cat pet" />
+			{/if}
+		{/if}
+		
+		<!--Tính năng-->
+		<!--Tăng exp sau mỗi lần click đối với mỗi chức năng-->
+		
+		<div class="function_pet">
+			{#if canPlay}
+			<button on:click={Play} on:click={clickPlay} >Play </button>
+			{/if}
+			{#if canFeed}
+			<button on:click={Feed} on:click={clickFeed} >Feed </button>
+			{/if}
+			{#if canClean}
+			<button on:click={Clean} on:click={clickClean}>Clean</button>
+			{/if}
+			{#if canTrain}
+			<button on:click={Train} on:click={clickTrain} >Train</button>
+			{/if}
 
-	</div>
-
-	
-<!--Thanh trạng thái của pet-->
-	<div class="status">
-		<span> Status: {status} </span>
-		<span> Level: {level} </span>
-		<span> Exp: {exp} </span>
-	</div>
-	
-	{#if sad}
-		{#if $pet_chosen == 1}
-			<img class="img_pet" src={dog} alt="cat pet" />
-		{:else if $pet_chosen == 2} 
-			<img class="img_pet" src={chin_sleep} alt="cat pet" />
-		{:else if $pet_chosen == 3}
-			<img class="img_pet" src={cat} alt="cat pet" />
-		{/if}
-	{:else if play}
-		{#if $pet_chosen == 1}
-			<img class="img_pet" src={dog_play} alt="cat pet" />
-		{:else if $pet_chosen == 2} 
-			<img class="img_pet" src={chin_play} alt="cat pet" />
-		{:else if $pet_chosen == 3}
-			<img class="img_pet" src={cat_play} alt="cat pet" />
-		{/if}
-	{:else if feed}
-		{#if $pet_chosen == 1}
-			<img class="img_pet" src={dog_feed} alt="cat pet" />
-		{:else if $pet_chosen == 2} 
-			<img class="img_pet" src={chin_eat} alt="cat pet" />
-		{:else if $pet_chosen == 3}
-			<img class="img_pet" src={cat_eat} alt="cat pet" />
-		{/if}
-	{:else if clean }
-		{#if $pet_chosen == 1}
-			<img class="img_pet" src={dog_clean} alt="cat pet" />
-		{:else if $pet_chosen == 2} 
-			<img class="img_pet" src={chin_clean} alt="cat pet" />
-		{:else if $pet_chosen == 3}
-			<img class="img_pet" src={cat_clean} alt="cat pet" />
-		{/if}
-	{:else if train }
-		{#if $pet_chosen == 1}
-			<img class="img_pet" src={dog_train} alt="cat pet" />
-		{:else if $pet_chosen == 2} 
-			<img class="img_pet" src={chin_train} alt="cat pet" />
-		{:else if $pet_chosen == 3}
-			<img class="img_pet" src={cat_train} alt="cat pet" />
-		{/if}
+		</div>
 	{/if}
-	
-<!--Tính năng-->
-<!--Tăng exp sau mỗi lần click đối với mỗi chức năng-->
-	
-	<div class="function_pet">
-		{#if canPlay}
-		<button on:click={Play} on:click={clickPlay} >Play </button>
-		{/if}
-		{#if canFeed}
-		<button on:click={Feed} on:click={clickFeed} >Feed </button>
-		{/if}
-		{#if canClean}
-		<button on:click={Clean} on:click={clickClean}>Clean</button>
-		{/if}
-		{#if canTrain}
-		<button on:click={Train} on:click={clickTrain} >Train</button>
-		{/if}
-	</div>
-	
-	
-	<!--Nút chat-->
-	<div class="chat">
-		<img src={chat_button} alt="chat button" style="width:60px; height:60px;" />
-	</div>
+</div>	
 
-</div>
+
 
 	<style>
 
