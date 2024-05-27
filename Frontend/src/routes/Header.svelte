@@ -8,6 +8,9 @@
 		let data = localStorage.getItem('id');
 		loggedIn.set( data ? true : false );
 	}
+	function LogIn() {
+		loggedIn.set(false);
+	}
 </script>
 
 <header on:load|preventDefault|once={loadHeader}>
@@ -27,10 +30,12 @@
 				<ul class="top_icon">
 				{#if !$loggedIn}
 					<li><a href="/login">Login</a></li>
-					<li><a href="/signup">Signup</a></li>
-				{:else}
-					<li style=""><a href="/signup">Log out</a></li>
-					<a id='icon' href="/user"><img src={avatar} alt="search" style="width:60px; height:60px;" /></a>
+					<li><a href="/signup">Signup</a></li>		
+				{/if}
+				{#if $loggedIn} 
+				<ul class="top_icon">
+					<li  class="login"><a on:click={LogIn} href="/">Logout</a></li>
+				</ul>
 				{/if}
 				</ul>
 
