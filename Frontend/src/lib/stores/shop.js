@@ -5,6 +5,7 @@ async function buyItem(itemId = '', quantity = 0) {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${localStorage.getItem('jwt')}`
 		},
 		body: JSON.stringify({ 
 			itemId: itemId,
