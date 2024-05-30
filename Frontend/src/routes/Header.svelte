@@ -2,12 +2,11 @@
 <script>
 	import logo from '$lib/images/logo.png';
 	import avatar from '$lib/images/avatar_cat_developer.png';
-	import { loggedIn } from '$lib/stores/logged_in.js';
-	import { LogOut } from '$lib/stores/user';
+	import { LogOut, isLoggedIn } from '$lib/stores/user';
 	
+	let loggedIn = false;
 	const loadHeader = () => {
-		let data = localStorage.getItem('id');
-		loggedIn.set( data ? true : false );
+		loggedIn = isLoggedIn();
 	}
 	
 </script>
@@ -27,11 +26,11 @@
 				<!--<li class="menu_list"><a href="#group">Forum</a></li>-->
 				
 				<ul class="top_icon">
-				{#if !$loggedIn}
+				{#if !loggedIn}
 					<li><a href="/login">Login</a></li>
 					<li><a href="/signup">Signup</a></li>		
 				{/if}
-				{#if $loggedIn} 
+				{#if loggedIn} 
 				<ul class="top_icon">
 					<li  class="login" style="padding-right: 20px;"><a on:click={LogOut} href="/login">Logout</a></li>
 					<a id='icon' href="/user"><img src={avatar} alt="search" style="width:50px; height:50px;" /></a>

@@ -26,7 +26,6 @@
                     })
                 });
                 if (response.ok) {
-                    //loggedIn.set(false);
                     goto('/login');
                 } else {
                     isError = true;

@@ -1,5 +1,9 @@
 import { URL_API, cookie } from "./checkToken";
-import { loggedIn } from "./logged_in";
+import { writable } from 'svelte/store';
+
+const isLoggedIn = () => {
+	return localStorage.getItem('id') ? true : false;
+}
 
 async function getUser() {
 	const id = localStorage.getItem('id');
@@ -21,7 +25,6 @@ async function getUser() {
 };
 
 async function LogOut() {
-	loggedIn.set(false);
 	localStorage.removeItem('id');
 	document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 	fetch(`${URL_API}/api/users/logout`, {
@@ -43,4 +46,4 @@ async function LogOut() {
 	});
 }
 
-export { getUser, LogOut };
+export { getUser, LogOut, isLoggedIn };

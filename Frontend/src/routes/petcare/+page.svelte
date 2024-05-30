@@ -17,9 +17,9 @@
 		import cat_eat from '$lib/images/cat_eat.gif';
 		import cat_play from '$lib/images/cat_play.gif';
 		import cat_train from '$lib/images/cat_train.gif';
-		import { loggedIn } from '$lib/stores/logged_in.js';
 		import { onMount } from 'svelte';
 		import { checkToken } from '../../lib/stores/checkToken.js';
+		import { isLoggedIn } from '$lib/stores/user.js';
 
 		onMount(async () => {
 			await checkToken();
@@ -126,7 +126,7 @@
 	
 
 <div class="background">
-	{#if $loggedIn}	
+	{#if isLoggedIn()}	
 		<!--Thanh điều hướng của pet care-->
 		<div class="grid-container">
 			<nav>
@@ -213,12 +213,6 @@
 
 
 	<style>
-
-		.chat {
-			position: fixed;
-			bottom: 25px;
-			left: 25px;
-		}
 
 		.grid-container {
 			display: grid;

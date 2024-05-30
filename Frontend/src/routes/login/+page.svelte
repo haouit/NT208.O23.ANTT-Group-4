@@ -1,6 +1,5 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { loggedIn } from '$lib/stores/logged_in';
     import { URL_API } from '../../lib/stores/checkToken';
 
 	$: error = 'Oh no, an error occured!';
@@ -32,7 +31,6 @@
 					const data = await response.json();
 					document.cookie = `jwt=${data.token}; path=/`;
 					localStorage.setItem('id', data.id);
-					loggedIn.set(true);
 					goto('/');
 				} else {
 					isError = true;
