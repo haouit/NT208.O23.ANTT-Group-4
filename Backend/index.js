@@ -8,6 +8,7 @@ const { requireAuth } = require('./middleware/auth');
 
 const userRouter = require('./routers/user.route');
 const billRouter = require('./routers/bill.route');
+const petRouter = require('./routers/pet.route');
 const mission_userRouter = require('./routers/mission_user.route');
 const pet_ownerRouter = require('./routers/pet_owner.route');
 const achieverRouter = require('./routers/achieve.route');
@@ -22,6 +23,7 @@ app.use(cors());
 // routes
 app.use('/api/users', userRouter);
 app.use('/api/bills', billRouter);
+app.use('/api/pets', petRouter);
 app.use('/api/mission_users', mission_userRouter);
 app.use('/api/pet_owners', pet_ownerRouter);
 app.use('/api/achieves', achieverRouter);
