@@ -1,6 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
-    import { URL_API } from '../checkToken';
+    import { URL_API } from '../../lib/stores/checkToken';
 
 	$: error = 'Oh no, an error occured!';
 	$: isError = false;

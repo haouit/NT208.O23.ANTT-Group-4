@@ -1,7 +1,7 @@
 <script>
     import Pick from './Pick.svelte';
 	import { onMount } from 'svelte';
-	import { checkToken } from '../checkToken';
+	import { checkToken } from '../../lib/stores/checkToken';
 
 	onMount(async () => {
 		await checkToken();

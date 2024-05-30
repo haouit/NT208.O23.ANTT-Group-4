@@ -19,7 +19,7 @@
 		import cat_train from '$lib/images/cat_train.gif';
 		import { loggedIn } from '$lib/stores/logged_in.js';
 		import { onMount } from 'svelte';
-		import { checkToken } from '../checkToken.js';
+		import { checkToken } from '../../lib/stores/checkToken.js';
 
 		onMount(async () => {
 			await checkToken();

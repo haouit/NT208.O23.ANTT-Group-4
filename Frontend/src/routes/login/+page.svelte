@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { loggedIn } from '$lib/stores/logged_in';
-    import { URL_API } from '../checkToken';
+    import { URL_API } from '../../lib/stores/checkToken';
 
 	$: error = 'Oh no, an error occured!';
 	$: isError = false;

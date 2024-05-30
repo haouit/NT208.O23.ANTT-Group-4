@@ -1,5 +1,5 @@
 <script>
-    import { URL_API, cookie } from '../checkToken';
+    import { URL_API, cookie } from '../../lib/stores/checkToken';
     import { onMount } from 'svelte';
 
     let user = { username: '', _id: '', level: '', coin: '' };
