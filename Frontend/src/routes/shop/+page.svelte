@@ -3,21 +3,31 @@
     import cat_food from "$lib/shop/cat_food.jpg"
     import chin_food from "$lib/shop/chin_food.jpg"
     import milk from "$lib/shop/milk.jpg"
+    import { onMount } from 'svelte'
+    import { getUser } from "$lib/stores/user"
+    import { buyItem } from "$lib/stores/shop"
+        
+    let userCoin = 0;
+    onMount(async () => {
+        const userData = await getUser();
+        userCoin = userData.coin;
+    });
 
-    let money = 100;
-    let food = 10;
-    let mi = 8;
-
-    function Buy_items( count = 0) {
-        if(money == 0 || money < mi || money < food) { return;}
-        if (count == 1) {
-            money -= food;
+    async function Buy_items(type = -1) {
+        if ([0, 1, 2, 3].includes(type)) {
+            const id = ['663e0d50adbede46c0bd88bb', '663e0d8fadbede46c0bd88bc', '663e0d50adbede46c0bd88bd', '663e0db0adbede46c0bd88bf'];
+            const cost = await buyItem(id[type], 1);
+            if (typeof cost === 'number') {
+                userCoin -= cost;
+            } else {
+                alert("You don't have enough money");
+            }
         }
-        else if(count == 2){
-            money -= mi;
+        else {
+            alert("Invalid type");
         }
-        return money;
     }
+    
  </script>
 <main>
 <div class="web">
@@ -26,7 +36,7 @@
         
         <div style="display: flex; justify-content: right; margin: 10px; ">
             <button type="button" class="custom-button" style="font-size: 1.5rem; padding: 1px; " >🛒</button>
-            <li class="wallet" style="padding-left: 20px;"> {money} 🪙</li>
+            <li class="wallet" style="padding-left: 20px;"> {userCoin} 🪙</li>
         </div>
             
     </header>
@@ -39,9 +49,9 @@
                     <div class="pet-product-item">
                         <div class="pet-product-item__img" style="background-image: url({dog_food})"></div>
                         <h4 class="pet-product-item__name">Dog Food</h4>
-                        <h5 class="pet-product-item__price">{food} 🪙</h5>
+                        <h5 class="pet-product-item__price">10 🪙</h5>
                         <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
-                            <button type="button" class="custom-button" on:click={() => {Buy_items(1)} }>Buy</button>
+                            <button type="button" class="custom-button" on:click={() => {Buy_items(0)} }>Buy</button>
                         </div>
                     </div>
                 </div>
@@ -50,7 +60,7 @@
                     <div class="pet-product-item">
                         <div class="pet-product-item__img" style="background-image: url({cat_food})"></div>
                         <h4 class="pet-product-item__name">Cat Food</h4>
-                        <h5 class="pet-product-item__price">{food} 🪙</h5>
+                        <h5 class="pet-product-item__price">10 🪙</h5>
                         <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
                             <button type="button" class="custom-button" on:click={() => {Buy_items(1)} }>Buy</button>
                         </div>
@@ -61,9 +71,9 @@
                     <div class="pet-product-item">
                         <div class="pet-product-item__img" style="background-image: url({chin_food})"></div>
                         <h4 class="pet-product-item__name">Chinchilla Food</h4>
-                        <h5 class="pet-product-item__price">{food} 🪙</h5>
+                        <h5 class="pet-product-item__price">10 🪙</h5>
                         <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
-                            <button type="button" class="custom-button" on:click={() => {Buy_items(1)} }>Buy</button>
+                            <button type="button" class="custom-button" on:click={() => {Buy_items(2)} }>Buy</button>
                         </div>
                     </div>
                 </div>
@@ -72,9 +82,9 @@
                     <div class="pet-product-item">
                         <div class="pet-product-item__img" style="background-image: url({milk})"></div>
                         <h4 class="pet-product-item__name">Milk</h4>
-                        <h5 class="pet-product-item__price">{mi} 🪙</h5>
+                        <h5 class="pet-product-item__price">8 🪙</h5>
                         <div style="display: flex; justify-content: center; margin: -13px; padding-bottom: 5px;">
-                            <button type="button" class="custom-button"on:click={() => {Buy_items(2)} }>Buy</button>
+                            <button type="button" class="custom-button"on:click={() => {Buy_items(3)} }>Buy</button>
                         </div>
                     </div>
                 </div>
