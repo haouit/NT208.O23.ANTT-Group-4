@@ -1,24 +1,11 @@
 <script>
-    import { URL_API, cookie } from '../../lib/stores/checkToken';
+    import { getUser } from '$lib/stores/user';
     import { onMount } from 'svelte';
 
     let user = { username: '', _id: '', level: '', coin: '' };
 
     onMount(async () => {
-        const id = localStorage.getItem('id');
-        const response = await fetch(`${URL_API}/api/users/id/${id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-				'Authorization': `Bearer ${cookie()}`
-            }
-        });
-        if (response.ok) {
-            user = await response.json();
-        } else {
-            console.error('Failed to fetch user data');
-        }
-        console.log(user.username);
+        user = await getUser();
     });
 </script>
 
@@ -73,29 +60,6 @@
         color: orangered;
         font-weight: bold;
         font-size: 300px;
-    }
-
-    td > a {
-    display: block;
-    width: 100%;
-    text-decoration: none;
-
-    text-align: center;
-    padding: 0.5ex;
-    border: 2px solid #ECF0F1;
-    transition: border ease 500ms;
-    border-radius: 1ex;
-    font-family: "Open Sans";
-    background: #ECF0F1;
-    color: #181818;
-
-
-    &:focus {
-        outline: none;
-        border: 2px solid tomato;
-        color: tomato;
-    }
-
     }
     
     table {

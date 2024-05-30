@@ -3,14 +3,13 @@
 	import logo from '$lib/images/logo.png';
 	import avatar from '$lib/images/avatar_cat_developer.png';
 	import { loggedIn } from '$lib/stores/logged_in.js';
-
+	import { LogOut } from '$lib/stores/user';
+	
 	const loadHeader = () => {
 		let data = localStorage.getItem('id');
 		loggedIn.set( data ? true : false );
 	}
-	function LogIn() {
-		loggedIn.set(false);
-	}
+	
 </script>
 
 <header on:load|preventDefault|once={loadHeader}>
@@ -34,7 +33,7 @@
 				{/if}
 				{#if $loggedIn} 
 				<ul class="top_icon">
-					<li  class="login" style="padding-right: 20px;"><a on:click={LogIn} href="/">Logout</a></li>
+					<li  class="login" style="padding-right: 20px;"><a on:click={LogOut} href="/login">Logout</a></li>
 					<a id='icon' href="/user"><img src={avatar} alt="search" style="width:50px; height:50px;" /></a>
 				</ul>
 				{/if}
