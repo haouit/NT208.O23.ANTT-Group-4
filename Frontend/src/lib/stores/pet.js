@@ -6,16 +6,14 @@ const pet = writable({
 	userId: '',
 	name: '',
 	exp: 0,
-	level: 0
 });
 
-async function checkPet(userId = '') {
+async function checkPet(userId = '', pickUp = true) {
 	pet.update(() => {
 		return {
 			userId: '',
 			name: '',
 			exp: 0,
-			level: 0
 		}
 	});
 	const response = await fetch(`${URL_API}/api/pets/check/${userId}`, {
@@ -30,11 +28,11 @@ async function checkPet(userId = '') {
 		const data = await response.json();
 		if (data) {
 			pet.update(() => data);
-			alert('You already have a pet');
-			goto('/petcare');
+			if (pickUp) {
+				alert('You already have a pet');
+				goto('/petcare');
+			}
 		}
-	} else {
-		alert('Failed to check pet');
 	}
 }
 

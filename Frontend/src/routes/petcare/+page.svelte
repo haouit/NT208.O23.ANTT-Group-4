@@ -3,7 +3,7 @@
 		import { onMount } from 'svelte';
 		import { checkToken } from '../../lib/stores/checkToken';
 		import { loggedIn } from '$lib/stores/user';
-		import { pet } from '$lib/stores/pet';
+		import { pet, checkPet } from '$lib/stores/pet';
 		import chat_button from '$lib/images/chat.png';
 		import chin_clean from '$lib/images/chin_clean.gif';
 		import chin_sleep from '$lib/images/chin_sleep.gif';
@@ -23,19 +23,19 @@
 
 		onMount(async () => {
 			await checkToken();
+			const id = localStorage.getItem('id') || undefined;
+			await checkPet(id, false); 
 		});
-
-		$: pet_chosen = $pet.name;
 
 		/*Cài đặt của Feed*/
 		let canFeed = true;
 		function enableFeed() {canFeed = true}
 		function clickFeed () {
 			if (!canFeed) return;
-			exp += 10;
-			if (exp >= 100) {
+			$pet.exp += 10;
+			if ($pet.exp >= 100) {
 				level += 1;
-				exp -= 100;
+				$pet.exp -= 100;
 			}
 			canFeed = false;
 			setTimeout(enableFeed, 10000);
@@ -46,10 +46,10 @@
 		function enablePlay() {canPlay = true}
 		function clickPlay () {
 			if (!canPlay) return;
-			exp += 20;
-			if (exp >= 100) {
+			$pet.exp += 20;
+			if ($pet.exp >= 100) {
 				level += 1;
-				exp -= 100;
+				$pet.exp -= 100;
 			}
 			canPlay = false;
 			setTimeout(enablePlay, 15000);
@@ -60,10 +60,10 @@
 		function enableClean() {canClean = true}
 		function clickClean () {
 			if (!canClean) return;
-			exp += 15;
-			if (exp >= 100) {
+			$pet.exp += 15;
+			if ($pet.exp >= 100) {
 				level += 1;
-				exp -= 100;
+				$pet.exp -= 100;
 			}
 			canClean = false;
 			setTimeout(enableClean, 15000);
@@ -71,14 +71,14 @@
 
 
 		/*Cài đặt của Train*/
-			let canTrain = true;
+		let canTrain = true;
 		function enableTrain() {canTrain = true}
 		function clickTrain () {
 			if (!canTrain) return;
-			exp += 15;
-			if (exp >= 100) {
+			$pet.exp += 15;
+			if ($pet.exp >= 100) {
 				level += 1;
-				exp -= 100;
+				$pet.exp -= 100;
 			}
 			canTrain = false;
 			setTimeout(enableTrain, 15000);
@@ -114,13 +114,13 @@
 			train = true;
   		};
 
+	  	$: pet_chosen = $pet.name;
 		const status = 'Happy';
-		$: exp = 0;
-		$: level = 1;
+		let level = $pet.exp / 100;
 
-		$: if (exp >= 100) {
+		$: if ($pet.exp >= 100) {
 			level += 1;
-			exp -= 100;
+			$pet.exp -= 100;
 		}
 		
 </script>
@@ -146,7 +146,7 @@
 		<div class="status">
 			<span> Status: {status} </span>
 			<span> Level: {level} </span>
-			<span> Exp: {exp} </span>
+			<span> Exp: {$pet.exp} </span>
 		</div>
 		
 		{#if sad}
