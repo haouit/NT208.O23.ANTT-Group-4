@@ -10,6 +10,14 @@ const pet = writable({
 });
 
 async function checkPet(userId = '') {
+	pet.update(() => {
+		return {
+			userId: '',
+			name: '',
+			exp: 0,
+			level: 0
+		}
+	});
 	const response = await fetch(`${URL_API}/api/pets/check/${userId}`, {
 		method: 'GET',
 		headers: {
@@ -20,8 +28,8 @@ async function checkPet(userId = '') {
 
 	if (response.ok) {
 		const data = await response.json();
-		console.log(data);
 		if (data) {
+			pet.update(() => data);
 			alert('You already have a pet');
 			goto('/petcare');
 		}
@@ -44,12 +52,12 @@ async function IChooseYouPokemon(name = '') {
 	});
 
 	if (response.ok) {
-		alert('Purchase successful');
+		alert('Receive pet successful');
 		const data = await response.json();
 		pet.update(() => data);
 		goto('/petcare');
 	} else {
-		alert('Purchase failed');
+		alert('Receive pet failed');
 		return 0;
 	}
 };
