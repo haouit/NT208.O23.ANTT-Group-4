@@ -1,5 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
+	import { loggedIn } from '$lib/stores/user';
     import { URL_API } from '../../lib/stores/checkToken';
 
 	$: error = 'Oh no, an error occured!';
@@ -19,8 +20,7 @@
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify({ 
-						username: username,
-						password: password
+						username, password
 					})
 				});
 
@@ -30,6 +30,7 @@
 					// set cookie
 					const data = await response.json();
 					document.cookie = `jwt=${data.token}; path=/`;
+					loggedIn.set(true);
 					localStorage.setItem('id', data.id);
 					goto('/');
 				} else {

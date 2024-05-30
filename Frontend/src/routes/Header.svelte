@@ -2,16 +2,11 @@
 <script>
 	import logo from '$lib/images/logo.png';
 	import avatar from '$lib/images/avatar_cat_developer.png';
-	import { LogOut, isLoggedIn } from '$lib/stores/user';
-	
-	let loggedIn = false;
-	const loadHeader = () => {
-		loggedIn = isLoggedIn();
-	}
+	import { LogOut, loggedIn } from '$lib/stores/user';
 	
 </script>
 
-<header on:load|preventDefault|once={loadHeader}>
+<header>
 	<!--Thanh điều hướng-->
 	<div class="menu">
 		<nav>
@@ -26,11 +21,11 @@
 				<!--<li class="menu_list"><a href="#group">Forum</a></li>-->
 				
 				<ul class="top_icon">
-				{#if !loggedIn}
+				{#if !$loggedIn}
 					<li><a href="/login">Login</a></li>
 					<li><a href="/signup">Signup</a></li>		
 				{/if}
-				{#if loggedIn} 
+				{#if $loggedIn} 
 				<ul class="top_icon">
 					<li  class="login" style="padding-right: 20px;"><a on:click={LogOut} href="/login">Logout</a></li>
 					<a id='icon' href="/user"><img src={avatar} alt="search" style="width:50px; height:50px;" /></a>

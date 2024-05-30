@@ -1,9 +1,7 @@
+import { writable } from "svelte/store";
 import { URL_API, cookie } from "./checkToken";
-import { writable } from 'svelte/store';
 
-const isLoggedIn = () => {
-	return localStorage.getItem('id') ? true : false;
-}
+const loggedIn = writable();
 
 async function getUser() {
 	const id = localStorage.getItem('id');
@@ -46,4 +44,4 @@ async function LogOut() {
 	});
 }
 
-export { getUser, LogOut, isLoggedIn };
+export { getUser, LogOut, loggedIn };
