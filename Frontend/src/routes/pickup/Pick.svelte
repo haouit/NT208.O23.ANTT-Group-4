@@ -1,29 +1,50 @@
 <script>
+	import { onMount } from 'svelte';
+	import { checkToken } from '$lib/stores/checkToken';
+	import { IChooseYouPokemon, checkPet } from '$lib/stores/pet';
 	import dog from '$lib/images/dog.jpg';
 	import cat from '$lib/images/cat.jpg';
 	import chinchilla from '$lib/images/chinchilla.jpg';
     import dog_sound from '$lib/sounds/happy-puppy-barks-741.wav';
     import cat_sound from '$lib/sounds/cartoon-little-cat-meow.wav';
     import chinchilla_sound from '$lib/sounds/chinchilla-bquiek1.mp3';
-	import {pet_chosen} from '$lib/stores/pet_chosen'
-	$: title = `<strong>Chọn thú cưng</strong>`;
 
+	onMount(async () => {
+		await checkToken();
+		const id = localStorage.getItem('id') || undefined;
+		await checkPet(id);
+	});
+
+	$: title = `<strong>Chọn thú cưng</strong>`;
+	const pets = [
+		{ id:'', name: 'Chó con', exp: 0, level: 0 },
+		{ id:'', name: 'Chinchilla', exp: 0, level: 0 },
+		{ id:'', name: 'Mèo lười', exp: 0, level: 0 }
+	];
+
+	let pet_choosen = -1;
     function dogClick() {
         const audio = new Audio(dog_sound);
         audio.play();
-        pet_chosen.set(1);
+        pet_choosen = 0;
     }
     function chinchillaClick() {
         const audio = new Audio(chinchilla_sound);
         audio.play();
-        pet_chosen.set(2);
+        pet_choosen = 1;
     }
     function catClick() {
         const audio = new Audio(cat_sound);
         audio.play();
-        pet_chosen.set(3);
-
+        pet_choosen = 2;
     }
+	function choosePet() {
+		if (pet_choosen === -1) {
+			alert('Bạn chưa chọn thú cưng');
+			return;
+		}
+		IChooseYouPokemon(pets[pet_choosen].name);
+	}
 </script>
 
 
@@ -57,9 +78,8 @@
 		<div style="display: flex; justify-content: center; margin: 40px;" class="select">
 			<!--Đã nối được sang petcare-->
 			<!--Vấn đề là làm sao để chọn con gì thì chọn hình con đó đặt vào-->
-			<button type="button">
-				<a href="./petcare">Chọn nuôi</a>
-				
+			<button type="button" on:click={choosePet}>
+				Chọn nuôi
 			</button>
 		</div>
 	</table>
@@ -114,9 +134,5 @@
         margin: 4px 2px;
         cursor: pointer;
         border-radius: 10px;
-    }
-    button a {
-        color: white;
-        text-decoration: none;
     }
 </style>

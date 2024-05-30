@@ -1,7 +1,10 @@
 	<!--File này dùng cho petcare-->
 <script>
+		import { onMount } from 'svelte';
+		import { checkToken } from '../../lib/stores/checkToken';
+		import { loggedIn } from '$lib/stores/user';
+		import { pet } from '$lib/stores/pet';
 		import chat_button from '$lib/images/chat.png';
-		import { pet_chosen } from '$lib/stores/pet_chosen';
 		import chin_clean from '$lib/images/chin_clean.gif';
 		import chin_sleep from '$lib/images/chin_sleep.gif';
 		import chin_play from '$lib/images/chin_play.gif';
@@ -17,14 +20,13 @@
 		import cat_eat from '$lib/images/cat_eat.gif';
 		import cat_play from '$lib/images/cat_play.gif';
 		import cat_train from '$lib/images/cat_train.gif';
-		import { onMount } from 'svelte';
-		import { checkToken } from '../../lib/stores/checkToken.js';
-		import { isLoggedIn } from '$lib/stores/user.js';
 
 		onMount(async () => {
 			await checkToken();
 		});
-	
+
+		$: pet_chosen = $pet.name;
+
 		/*Cài đặt của Feed*/
 		let canFeed = true;
 		function enableFeed() {canFeed = true}
@@ -126,7 +128,7 @@
 	
 
 <div class="background">
-	{#if isLoggedIn()}	
+	{#if $loggedIn}	
 		<!--Thanh điều hướng của pet care-->
 		<div class="grid-container">
 			<nav>
@@ -148,43 +150,43 @@
 		</div>
 		
 		{#if sad}
-			{#if $pet_chosen == 1}
-				<img class="img_pet" src={dog} alt="cat pet" />
-			{:else if $pet_chosen == 2} 
-				<img class="img_pet" src={chin_sleep} alt="cat pet" />
-			{:else if $pet_chosen == 3}
+			{#if pet_chosen == 'Chó con'}
+				<img class="img_pet" src={dog} alt="dog pet" />
+			{:else if pet_chosen == 'Chinchilla'} 
+				<img class="img_pet" src={chin_sleep} alt="chinchilla pet" />
+			{:else if pet_chosen == 'Mèo lười'}
 				<img class="img_pet" src={cat} alt="cat pet" />
 			{/if}
 		{:else if play}
-			{#if $pet_chosen == 1}
-				<img class="img_pet" src={dog_play} alt="cat pet" />
-			{:else if $pet_chosen == 2} 
-				<img class="img_pet" src={chin_play} alt="cat pet" />
-			{:else if $pet_chosen == 3}
+			{#if pet_chosen == 'Chó con'}
+				<img class="img_pet" src={dog_play} alt="dog pet" />
+			{:else if pet_chosen == 'Chinchilla'} 
+				<img class="img_pet" src={chin_play} alt="chinchilla pet" />
+			{:else if pet_chosen == 'Mèo lười'}
 				<img class="img_pet" src={cat_play} alt="cat pet" />
 			{/if}
 		{:else if feed}
-			{#if $pet_chosen == 1}
-				<img class="img_pet" src={dog_feed} alt="cat pet" />
-			{:else if $pet_chosen == 2} 
-				<img class="img_pet" src={chin_eat} alt="cat pet" />
-			{:else if $pet_chosen == 3}
+			{#if pet_chosen == 'Chó con'}
+				<img class="img_pet" src={dog_feed} alt="dog pet" />
+			{:else if pet_chosen == 'Chinchilla'} 
+				<img class="img_pet" src={chin_eat} alt="chinchilla pet" />
+			{:else if pet_chosen == 'Mèo lười'}
 				<img class="img_pet" src={cat_eat} alt="cat pet" />
 			{/if}
 		{:else if clean }
-			{#if $pet_chosen == 1}
-				<img class="img_pet" src={dog_clean} alt="cat pet" />
-			{:else if $pet_chosen == 2} 
-				<img class="img_pet" src={chin_clean} alt="cat pet" />
-			{:else if $pet_chosen == 3}
+			{#if pet_chosen == 'Chó con'}
+				<img class="img_pet" src={dog_clean} alt="dog pet" />
+			{:else if pet_chosen == 'Chinchilla'} 
+				<img class="img_pet" src={chin_clean} alt="chinchilla pet" />
+			{:else if pet_chosen == 'Mèo lười'}
 				<img class="img_pet" src={cat_clean} alt="cat pet" />
 			{/if}
 		{:else if train }
-			{#if $pet_chosen == 1}
-				<img class="img_pet" src={dog_train} alt="cat pet" />
-			{:else if $pet_chosen == 2} 
-				<img class="img_pet" src={chin_train} alt="cat pet" />
-			{:else if $pet_chosen == 3}
+			{#if pet_chosen == 'Chó con'}
+				<img class="img_pet" src={dog_train} alt="dog pet" />
+			{:else if pet_chosen == 'Chinchilla'} 
+				<img class="img_pet" src={chin_train} alt="chinchilla pet" />
+			{:else if pet_chosen == 'Mèo lười'}
 				<img class="img_pet" src={cat_train} alt="cat pet" />
 			{/if}
 		{/if}
