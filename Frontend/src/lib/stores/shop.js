@@ -1,11 +1,11 @@
-import { URL_API } from "./checkToken";
+import { URL_API, cookie } from "./checkToken";
 
 async function buyItem(itemId = '', quantity = 0) {
 	const response = await fetch(`${URL_API}/api/bills/create`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+			'Authorization': `Bearer ${cookie()}`
 		},
 		body: JSON.stringify({ 
 			itemId: itemId,
