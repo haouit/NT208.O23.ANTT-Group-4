@@ -78,7 +78,7 @@
 		<div style="display: flex; justify-content: center; margin: 40px;" class="select">
 			<!--Đã nối được sang petcare-->
 			<!--Vấn đề là làm sao để chọn con gì thì chọn hình con đó đặt vào-->
-			<button type="button" on:click={choosePet}>
+			<button type="button" on:click={choosePet} style="color:white;">
 				Chọn nuôi
 			</button>
 		</div>
