@@ -56,14 +56,22 @@ const createBill = async (req, res) => {
 				userItems: [{ itemId: req.body.itemId, quantity: req.body.quantity }]
 			});
 		} else {
-			await Bag.findByIdAndUpdate(
-				bag._id,
-				{ $inc: { "userItems.$[elem].quantity": req.body.quantity } },
-				{ arrayFilters: [{ "elem.itemId": req.body.itemId }], new: false }
-			);
+			const itemIndex = bag.userItems.findIndex(item => item.itemId == req.body.itemId);
+			if (itemIndex !== -1) {
+				await Bag.findOneAndUpdate(
+					{ userId: req.body.userId },
+					{ $inc: { "userItems.$[elem].quantity": req.body.quantity } },
+					{ arrayFilters: [{ "elem.itemId": req.body.itemId }] }
+				);
+			} else {
+				await Bag.findOneAndUpdate(
+					{ userId: req.body.userId },
+					{ $addToSet: { userItems: { itemId: req.body.itemId, quantity: req.body.quantity } } }
+				);
+			}
 		}
 
-		res.status(200).json({totalPrice, bill});
+		res.status(200).json({ totalPrice, bill });
 		console.log('[Bill] Created: ' + bill._id);
 	}
 	catch (error) {
