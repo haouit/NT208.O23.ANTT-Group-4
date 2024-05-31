@@ -27,7 +27,7 @@
 				{/if}
 				{#if $loggedIn} 
 				<ul class="top_icon">
-					<li  class="login" style="padding-right: 20px;"><a on:click={LogOut} href="/login">Logout</a></li>
+					<li  class="login" style="padding-right: 20px;"><a on:click={LogOut} href="/">Logout</a></li>
 					<a id='icon' href="/user"><img src={avatar} alt="search" style="width:50px; height:50px;" /></a>
 				</ul>
 				{/if}
