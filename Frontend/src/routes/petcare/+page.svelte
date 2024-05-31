@@ -38,7 +38,7 @@
 			const petIndex = petNames.indexOf($pet.name);
 			if (await expUp(id, 50, petIndex)) {
 				canFeed = false;
-				setTimeout(enableFeed, 10000);
+				setTimeout(enableFeed, 20000); // Cho ăn 4 tiếng 1 lần = 14.400.000
 			}
 		}
 		
@@ -49,7 +49,7 @@
 			if (!canPlay) return;
 			expUp(id, 20);
 			canPlay = false;
-			setTimeout(enablePlay, 15000);
+			setTimeout(enablePlay, 20000); // Chơi có thể 1 tiếng 1 lần = 3.600.000
 		}
 
 		/*Cài đặt của Clean*/
@@ -59,7 +59,7 @@
 			if (!canClean) return;
 			expUp(id, 30);
 			canClean = false;
-			setTimeout(enableClean, 15000);
+			setTimeout(enableClean, 30000); // Cho 3 ngày tắm 1 lần = 259.200.000
 		}
 
 
@@ -70,7 +70,7 @@
 			if (!canTrain) return;
 			expUp(id, 25);
 			canTrain = false;
-			setTimeout(enableTrain, 15000);
+			setTimeout(enableTrain, 15000); // Huấn luyện 1 lần 1 ngày = 86.400.000
 		}
 
 		let sad = true;
@@ -121,6 +121,7 @@
 			<nav>
 				<ul>	
 					<li><a href="/shop">Shop</a></li>
+					
 					<li><a href="/mission">Mission</a></li>
 				</ul>
 			</nav>
