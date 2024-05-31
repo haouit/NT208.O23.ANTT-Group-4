@@ -60,4 +60,28 @@ async function IChooseYouPokemon(name = '') {
 	}
 };
 
-export { pet, IChooseYouPokemon, checkPet };
+async function expUp(userId = '', exp = 0, foodRequire = -1) {
+	const response = await fetch(`${URL_API}/api/pets/exp`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${cookie()}`
+		},
+		body: JSON.stringify({ 
+			userId,
+			exp,
+			foodRequire
+		})
+	});
+
+	if (response.ok) {
+		const data = await response.json();
+		pet.update(() => data);
+		return true;
+	} else if (response.status == 400) {
+		alert('Bạn không có đủ thức ăn cho pet');
+	}
+	return false;
+}
+
+export { pet, IChooseYouPokemon, checkPet, expUp };

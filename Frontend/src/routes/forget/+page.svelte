@@ -1,6 +1,5 @@
 <script>
     import { goto } from '$app/navigation';
-	import { loggedIn } from '$lib/stores/logged_in';
 
 	$: error = 'Oh no, an error occured!';
 	$: isError = false;

@@ -3,7 +3,7 @@
 		import { onMount } from 'svelte';
 		import { checkToken } from '../../lib/stores/checkToken';
 		import { loggedIn } from '$lib/stores/user';
-		import { pet, checkPet } from '$lib/stores/pet';
+		import { pet, checkPet, expUp } from '$lib/stores/pet';
 		import chat_button from '$lib/images/chat.png';
 		import chin_clean from '$lib/images/chin_clean.gif';
 		import chin_sleep from '$lib/images/chin_sleep.gif';
@@ -23,22 +23,23 @@
 
 		onMount(async () => {
 			await checkToken();
-			const id = localStorage.getItem('id') || undefined;
+			let id;
+			if (typeof localStorage !== 'undefined') {
+				id = localStorage.getItem('id') || undefined;
+			}
 			await checkPet(id, false); 
 		});
 
-		/*Cài đặt của Feed*/
+		/*Cài đặt của Feed*/ 
 		let canFeed = true;
 		function enableFeed() {canFeed = true}
-		function clickFeed () {
+		async function clickFeed () {
 			if (!canFeed) return;
-			$pet.exp += 10;
-			if ($pet.exp >= 100) {
-				level += 1;
-				$pet.exp -= 100;
+			const petIndex = petNames.indexOf($pet.name);
+			if (await expUp(id, 50, petIndex)) {
+				canFeed = false;
+				setTimeout(enableFeed, 10000);
 			}
-			canFeed = false;
-			setTimeout(enableFeed, 10000);
 		}
 		
 		/*Cài đặt của Play*/
@@ -46,11 +47,7 @@
 		function enablePlay() {canPlay = true}
 		function clickPlay () {
 			if (!canPlay) return;
-			$pet.exp += 20;
-			if ($pet.exp >= 100) {
-				level += 1;
-				$pet.exp -= 100;
-			}
+			expUp(id, 20);
 			canPlay = false;
 			setTimeout(enablePlay, 15000);
 		}
@@ -60,11 +57,7 @@
 		function enableClean() {canClean = true}
 		function clickClean () {
 			if (!canClean) return;
-			$pet.exp += 15;
-			if ($pet.exp >= 100) {
-				level += 1;
-				$pet.exp -= 100;
-			}
+			expUp(id, 30);
 			canClean = false;
 			setTimeout(enableClean, 15000);
 		}
@@ -75,11 +68,7 @@
 		function enableTrain() {canTrain = true}
 		function clickTrain () {
 			if (!canTrain) return;
-			$pet.exp += 15;
-			if ($pet.exp >= 100) {
-				level += 1;
-				$pet.exp -= 100;
-			}
+			expUp(id, 25);
 			canTrain = false;
 			setTimeout(enableTrain, 15000);
 		}
@@ -114,14 +103,12 @@
 			train = true;
   		};
 
-	  	$: pet_chosen = $pet.name;
-		const status = 'Happy';
-		let level = $pet.exp / 100;
+		const petNames = ['Chó con', 'Chinchilla', 'Mèo lười'];
 
-		$: if ($pet.exp >= 100) {
-			level += 1;
-			$pet.exp -= 100;
-		}
+		const id = localStorage.getItem('id') || undefined;
+		const status = 'Happy';
+		$: level = Math.floor($pet.exp / 100);
+		$: exp = $pet.exp % 100;
 		
 </script>
 
@@ -144,49 +131,51 @@
 		
 		<!--Thanh trạng thái của pet-->
 		<div class="status">
+			<span> {$pet.name} </span>
+			<br>
 			<span> Status: {status} </span>
 			<span> Level: {level} </span>
-			<span> Exp: {$pet.exp} </span>
+			<span> Exp: {exp} </span>
 		</div>
 		
 		{#if sad}
-			{#if pet_chosen == 'Chó con'}
+			{#if $pet.name == 'Chó con'}
 				<img class="img_pet" src={dog} alt="dog pet" />
-			{:else if pet_chosen == 'Chinchilla'} 
+			{:else if $pet.name == 'Chinchilla'} 
 				<img class="img_pet" src={chin_sleep} alt="chinchilla pet" />
-			{:else if pet_chosen == 'Mèo lười'}
+			{:else if $pet.name == 'Mèo lười'}
 				<img class="img_pet" src={cat} alt="cat pet" />
 			{/if}
 		{:else if play}
-			{#if pet_chosen == 'Chó con'}
+			{#if $pet.name == 'Chó con'}
 				<img class="img_pet" src={dog_play} alt="dog pet" />
-			{:else if pet_chosen == 'Chinchilla'} 
+			{:else if $pet.name == 'Chinchilla'} 
 				<img class="img_pet" src={chin_play} alt="chinchilla pet" />
-			{:else if pet_chosen == 'Mèo lười'}
+			{:else if $pet.name == 'Mèo lười'}
 				<img class="img_pet" src={cat_play} alt="cat pet" />
 			{/if}
 		{:else if feed}
-			{#if pet_chosen == 'Chó con'}
+			{#if $pet.name == 'Chó con'}
 				<img class="img_pet" src={dog_feed} alt="dog pet" />
-			{:else if pet_chosen == 'Chinchilla'} 
+			{:else if $pet.name == 'Chinchilla'} 
 				<img class="img_pet" src={chin_eat} alt="chinchilla pet" />
-			{:else if pet_chosen == 'Mèo lười'}
+			{:else if $pet.name == 'Mèo lười'}
 				<img class="img_pet" src={cat_eat} alt="cat pet" />
 			{/if}
 		{:else if clean }
-			{#if pet_chosen == 'Chó con'}
+			{#if $pet.name == 'Chó con'}
 				<img class="img_pet" src={dog_clean} alt="dog pet" />
-			{:else if pet_chosen == 'Chinchilla'} 
+			{:else if $pet.name == 'Chinchilla'} 
 				<img class="img_pet" src={chin_clean} alt="chinchilla pet" />
-			{:else if pet_chosen == 'Mèo lười'}
+			{:else if $pet.name == 'Mèo lười'}
 				<img class="img_pet" src={cat_clean} alt="cat pet" />
 			{/if}
 		{:else if train }
-			{#if pet_chosen == 'Chó con'}
+			{#if $pet.name == 'Chó con'}
 				<img class="img_pet" src={dog_train} alt="dog pet" />
-			{:else if pet_chosen == 'Chinchilla'} 
+			{:else if $pet.name == 'Chinchilla'} 
 				<img class="img_pet" src={chin_train} alt="chinchilla pet" />
-			{:else if pet_chosen == 'Mèo lười'}
+			{:else if $pet.name == 'Mèo lười'}
 				<img class="img_pet" src={cat_train} alt="cat pet" />
 			{/if}
 		{/if}
