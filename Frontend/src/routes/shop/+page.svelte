@@ -15,7 +15,7 @@
 
     async function Buy_items(type = -1) {
         if ([0, 1, 2, 3].includes(type)) {
-            const id = ['663e0d50adbede46c0bd88bb', '663e0d8fadbede46c0bd88bc', '663e0d50adbede46c0bd88bd', '663e0db0adbede46c0bd88bf'];
+            const id = ['663e0d50adbede46c0bd88bb', '663e0d8fadbede46c0bd88bc', '663e0da1adbede46c0bd88bd', '663e0db0adbede46c0bd88bf'];
             const cost = await buyItem(id[type], 1);
             if (typeof cost === 'number') {
                 userCoin -= cost;
