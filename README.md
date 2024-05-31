@@ -1,3 +1,41 @@
+## Installation
+To install and run this project, follow these steps:
+
+1. Clone the repository:
+  ```bash
+  $ git clone git@github.com:haouit/NT208.O23.ANTT-Group-4.git PetCare
+  ```
+
+2. Navigate to the project directory:
+  ```bash
+  $ cd PetCare
+  ```
+
+3. Install the dependencies and start application:
+  please open split terminal and run parallel
+  For frontend:
+  ```bash
+  $ cd Frontend/
+  $ npm i
+  $ npm run dev
+  ```
+  For backend:
+  ```bash
+  $ cd Backend/
+  $ npm i
+  $ npm run dev
+  ```
+
+4. Create Backend/.env file contain ACCESS_TOKEN_SECRET and MONGO_URI, for example:
+```
+ACCESS_TOKEN_SECRET='your-access-token-secret'
+MONGO_URI='mongodb+srv://your-mongo-database-uri'
+```
+
+5. Open your web browser and visit localhost following frontend's terminal to view the application.
+
+That's it! You have successfully installed and run the project.
+
 # **Đồ án môn học: Lập trình Ứng dụng Web**
 ## Mục lục
 - [Giới thiệu thành viên](#giới-thiệu-thành-viên)
