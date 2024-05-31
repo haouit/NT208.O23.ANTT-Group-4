@@ -53,9 +53,13 @@ That's it! You have successfully installed and run the project.
 ![Team & members](img/Slide01.png)
 
 ## Giới thiệu đề tài
->Tên đề tài: ***Ứng dụng web nuôi thú cưng***
+- Tên đề tài: ***Ứng dụng web nuôi thú cưng***
 
->Mô tả đề tài: "Ứng dụng web nuôi thú cưng" là một nền tảng trực tuyến được thiết kế để cung cấp trải nghiệm nuôi thú cưng trong môi trường web. Ứng dụng này cho phép người dùng lựa chọn và tùy chỉnh loài thú cưng ảo mà họ muốn nuôi. Ứng dụng có thể bao gồm các tính năng như lên cấp độ, thu thập điểm thưởng để mua đồ cho thú cưng, tham gia các hoạt động cộng đồng và giao tiếp với các người dùng khác để chia sẻ kinh nghiệm và kỷ niệm về việc nuôi thú cưng ảo.
+- Mô tả đề tài: "Ứng dụng web nuôi thú cưng" là một nền tảng trực tuyến được thiết kế để cung cấp trải nghiệm nuôi thú cưng trong môi trường web. Ứng dụng này cho phép người dùng lựa chọn và tùy chỉnh loài thú cưng ảo mà họ muốn nuôi. Ứng dụng có thể bao gồm các tính năng như lên cấp độ, thu thập điểm thưởng để mua đồ cho thú cưng, tham gia các nhiệm vụ cùng với thú để thêm độ thân thiết và kỷ niệm về việc nuôi thú cưng ảo.
+
+- Công nghệ sử dụng: 
+  - FrontEnd: Svelte
+  - Backend: Express.js, Mongodb
 
 ## Sơ đồ chức năng web
 ![](img/Slide02.png)
