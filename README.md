@@ -1,3 +1,7 @@
+## Requirement
+
+This project using nodejs version `v21.7.1` and npm version `10.5.0`
+
 ## Installation
 To install and run this project, follow these steps:
 
@@ -11,28 +15,26 @@ To install and run this project, follow these steps:
   $ cd PetCare
   ```
 
-3. Install the dependencies and start application:
-  please open split terminal and run parallel
-  For frontend:
+3. Install the dependencies and build svelte-kit:
   ```bash
   $ cd Frontend/
   $ npm i
-  $ npm run dev
-  ```
-  For backend:
-  ```bash
-  $ cd Backend/
-  $ npm i
-  $ npm run dev
+  $ npm run build
   ```
 
-4. Create Backend/.env file contain ACCESS_TOKEN_SECRET and MONGO_URI, for example:
+4. Create ./.env file contain ACCESS_TOKEN_SECRET and MONGO_URI, for example:
 ```
 ACCESS_TOKEN_SECRET='your-access-token-secret'
 MONGO_URI='mongodb+srv://your-mongo-database-uri'
 ```
 
-5. Open your web browser and visit localhost following frontend's terminal to view the application.
+5. Start server Express:
+  ```bash
+  $ npm i
+  $ node index.js
+  ```
+
+6. Open your web browser and visit localhost following terminal to view the application.
 
 That's it! You have successfully installed and run the project.
 
