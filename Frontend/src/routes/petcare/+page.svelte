@@ -4,6 +4,7 @@
 		import { checkToken } from '../../lib/stores/checkToken';
 		import { loggedIn } from '$lib/stores/user';
 		import { pet, checkPet, expUp } from '$lib/stores/pet';
+		import ChatBox from '../ChatBox.svelte';
 		import chat_button from '$lib/images/chat.png';
 		import chin_clean from '$lib/images/chin_clean.gif';
 		import chin_sleep from '$lib/images/chin_sleep.gif';
@@ -103,6 +104,11 @@
 			train = true;
   		};
 
+		$: chat = false;
+		function showChat() {
+			chat = !chat;
+		}
+
 		const petNames = ['Chó con', 'Chinchilla', 'Mèo lười'];
 
 		const id = localStorage.getItem('id') || undefined;
@@ -121,11 +127,13 @@
 			<nav>
 				<ul>	
 					<li><a href="/shop">Shop</a></li>
-					
 					<li><a href="/mission">Mission</a></li>
+					<li><a href="/chat">Chat</a></li>
 				</ul>
 			</nav>
-
+			{#if chat}
+				<ChatBox />
+			{/if}
 		</div>
 
 		
