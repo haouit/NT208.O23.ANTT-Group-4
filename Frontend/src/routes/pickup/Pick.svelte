@@ -11,7 +11,10 @@
 
 	onMount(async () => {
 		await checkToken();
-		const id = localStorage.getItem('id') || undefined;
+		let id;
+		if (typeof localStorage !== 'undefined') {
+			id = localStorage.getItem('id') || undefined;
+		}
 		await checkPet(id);
 	});
 
