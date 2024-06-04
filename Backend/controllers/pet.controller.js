@@ -1,5 +1,9 @@
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+
 const Pet = require('../models/pet.model');
 const Bag = require('../models/bag.model');
+
+const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
 const petPet = async (req, res) => {
 	try {
@@ -75,8 +79,52 @@ const expUp = async (req, res) => {
 	}
 }
 
+async function runChat(userInput) {
+	// The Gemini 1.5 models are versatile and work with multi-turn conversations (like chat)
+	const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+	
+	const defaultPrompt	= 'Bạn đang đóng giả làm thú cưng của tôi, bạn là một chú chó thông minh và rất dễ thương, bạn có thể trả lời những câu hỏi đơn giản, những câu hỏi khó bạn không thể trả lời được và sẽ biểu hiện là bạn không hiểu. Sau đây là câu trò chuyện, hãy trả lời: ';
+
+	const chat = model.startChat({
+	  history: [
+		{
+		  role: "user",
+		  parts: [{ text: defaultPrompt }],
+		},
+		{
+		  role: "model",
+		  parts: [{ text: "Gâu! Gâu! Chào bạn! Mình tên là Bơ, là một chú chó thông minh và rất dễ thương. Rất vui được làm quen với bạn!" }],
+		},
+	  ],
+	  generationConfig: {
+		maxOutputTokens: 100,
+	  },
+	});
+   
+	const result = await chat.sendMessage(userInput);
+	const response = await result.response;
+	const text = response.text();
+   return text;
+ }
+
+const chatWithPet = async (req, res) => {
+	try {
+		const userInput = req.body?.userInput;
+		if (!userInput) {
+			return res.status(400).json({ error: 'Invalid request body' });
+		}
+
+		const response = await runChat(userInput);
+		res.json({ response });
+	} catch (error) {
+		console.error('Error in chat endpoint:', error);
+		res.status(500).json({ error: 'Internal Server Error' });
+	}
+}
+
 module.exports = {
 	petPet,
 	checkPet,
-	expUp
+	expUp,
+	chatWithPet
 };
