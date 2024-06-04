@@ -74,6 +74,16 @@
 			setTimeout(enableTrain, 15000); // Huấn luyện 1 lần 1 ngày = 86.400.000
 		}
 
+		/*Cài đặt của ChatBox*/
+		function openchat() {
+			popupOpened = true;
+		}
+		function closechat() {
+			popupOpened = false;
+		}
+
+	let popupOpened = false;
+
 		let sad = true;
 		let play = false;
 		let feed = false;
@@ -104,10 +114,6 @@
 			train = true;
   		};
 
-		$: chat = false;
-		function showChat() {
-			chat = !chat;
-		}
 
 		const petNames = ['Chó con', 'Chinchilla', 'Mèo lười'];
 
@@ -128,12 +134,8 @@
 				<ul>	
 					<li><a href="/shop">Shop</a></li>
 					<li><a href="/mission">Mission</a></li>
-					<li><a href="/chat">Chat</a></li>
 				</ul>
 			</nav>
-			{#if chat}
-				<ChatBox />
-			{/if}
 		</div>
 
 		
@@ -204,14 +206,30 @@
 			{#if canTrain}
 			<button on:click={Train} on:click={clickTrain} >Train</button>
 			{/if}
-
+			{#if !popupOpened}
+				<button on:click={openchat}>Chat</button>
+			{/if}
+			{#if popupOpened}
+				<button on:click={closechat}>Close Chat</button>
+			{/if}
 		</div>
+		<!--ChatBox-->
+		{#if popupOpened}
+		<div class="Popup">
+			<ChatBox />
+		</div>
+		{/if}
 	{/if}
-</div>	
+</div>
 
+<style>
+		.Popup{
+			cursor: pointer;
+			position: fixed;
+			bottom: 23px;
+			right: 15px;
+		}
 
-
-	<style>
 
 		.grid-container {
 			display: grid;

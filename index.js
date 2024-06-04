@@ -40,8 +40,8 @@ import('./Frontend/build/handler.js').then(module => {
 	// let SvelteKit handle everything else, including serving prerendered pages and static assets
 	app.use(handler);
 
-	app.listen(5038, () => {
-		console.log('Server started on http://localhost:5038');
+	app.listen(5555, () => {
+		console.log('Server started on http://localhost:5555');
 	});
 	
 	mongoose.connect(process.env.MONGO_URI)
