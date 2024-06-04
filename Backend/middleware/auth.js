@@ -5,8 +5,8 @@ const User = require('../models/user.model');
 const requireAuth = (req, res, next) => {
   // const token = req.cookies;
   // check authorization field
-  const authHeader = req.headers.authorization;
-  const token = authHeader && authHeader.split(' ')[1];
+  const token = req.cookies.jwt;
+
   // check json web token exists & is verified
   if (token === 'undefined') {
     res.status(401).json({ redirect: '/login' });
