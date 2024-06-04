@@ -80,6 +80,7 @@ const expUp = async (req, res) => {
 }
 
 async function runChat(userInput) {
+	try {
 	// The Gemini 1.5 models are versatile and work with multi-turn conversations (like chat)
 	const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 	
@@ -105,6 +106,12 @@ async function runChat(userInput) {
 	const response = await result.response;
 	const text = response.text();
    return text;
+} catch (error) {
+	if (error instanceof GoogleGenerativeAIResponseError) {
+		const defaultResopnse = 'Graw?... Graw?... không hiểu... ';
+	  return defaultResopnse;
+	}
+}
  }
 
 const chatWithPet = async (req, res) => {
