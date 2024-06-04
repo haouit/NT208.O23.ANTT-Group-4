@@ -5,7 +5,7 @@ const cors = require('cors');
 
 let handler;
 
-import('../Frontend/build/handler.js').then(module => {
+import('./Frontend/build/handler.js').then(module => {
 	const handler = module.handler;
   
 
