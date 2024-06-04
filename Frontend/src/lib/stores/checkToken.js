@@ -1,4 +1,4 @@
-const URL_API = 'http://localhost:5038';
+const URL_API = '';
 
 const cookie = () => {
 	const value = `; ${document.cookie}`;
