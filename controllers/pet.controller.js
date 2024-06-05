@@ -23,6 +23,8 @@ const petPet = async (req, res) => {
 
 const checkPet = async (req, res) => {
 	try {
+		// get userId in cookie
+		
 		// check pet
 		const pet = await Pet.findOne({
 			userId: req.params.userId
@@ -79,42 +81,71 @@ const expUp = async (req, res) => {
 	}
 }
 
-async function runChat(userInput) {
-	// The Gemini 1.5 models are versatile and work with multi-turn conversations (like chat)
-	const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
-	
-	const defaultPrompt	= 'Bạn đang đóng giả làm thú cưng của tôi, bạn là một chú chó thông minh và rất dễ thương, bạn có thể trả lời những câu hỏi đơn giản, những câu hỏi khó bạn không thể trả lời được và sẽ biểu hiện là bạn không hiểu. Sau đây là câu trò chuyện, hãy trả lời: ';
+async function runChat(userInput, type) {
+	try {
+		// The Gemini 1.5 models are versatile and work with multi-turn conversations (like chat)
+		const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-	const chat = model.startChat({
-	  history: [
-		{
-		  role: "user",
-		  parts: [{ text: defaultPrompt }],
-		},
-		{
-		  role: "model",
-		  parts: [{ text: "Gâu! Gâu! Chào bạn! Mình tên là Bơ, là một chú chó thông minh và rất dễ thương. Rất vui được làm quen với bạn!" }],
-		},
-	  ],
-	  generationConfig: {
-		maxOutputTokens: 100,
-	  },
-	});
-   
-	const result = await chat.sendMessage(userInput);
-	const response = await result.response;
-	const text = response.text();
-   return text;
- }
+		const dogPrompt = 'Bạn đang đóng giả làm thú cưng của tôi, bạn là một chú chó thông minh và rất dễ thương, bạn có thể trả lời những câu hỏi đơn giản, những câu hỏi khó bạn không thể trả lời được và sẽ biểu hiện là bạn không hiểu. Sau đây là câu trò chuyện, hãy trả lời: ';
+		const dogresponse = "Gâu! Gâu! Chào bạn! Mình tên là chó con, là một chú chó thông minh và rất dễ thương. Rất vui được làm quen với bạn!";
+		const catPrompt = 'Bạn đang đóng giả làm thú cưng của tôi, bạn là một chú mèo thông minh và rất dễ thương, bạn có thể trả lời những câu hỏi đơn giản, những câu hỏi khó bạn không thể trả lời được và sẽ biểu hiện là bạn không hiểu. Sau đây là câu trò chuyện, hãy trả lời: ';
+		const catresponse = "Mew! Mew! Chào bạn! Mình tên là mèo lười, là một chú chó thông minh và rất dễ thương. Rất vui được làm quen với bạn!";
+		const mousePrompt = 'Bạn đang đóng giả làm thú cưng của tôi, bạn là một chú chuột thông minh và rất dễ thương, bạn có thể trả lời những câu hỏi đơn giản, những câu hỏi khó bạn không thể trả lời được và sẽ biểu hiện là bạn không hiểu. Sau đây là câu trò chuyện, hãy trả lời: ';
+		const mouseresponse = "Chít! Chít! Chào bạn! Mình tên là Chinchilla, là một chú chuột thông minh và rất dễ thương. Rất vui được làm quen với bạn!";
+
+		const defaultPrompt = {
+			"Chó con": dogPrompt,
+			"Mèo lười": catPrompt,
+			"Chinchilla": mousePrompt
+		
+		};
+
+		const defaultResponse = {
+			"Chó con": dogresponse,
+			"Mèo lười": catresponse,
+			"Chinchilla": mouseresponse
+		};
+
+
+
+		const chat = model.startChat({
+			history: [
+				{
+					role: "user",
+					parts: [{ text: defaultPrompt[type] }],
+				},
+				{
+					role: "model",
+					parts: [{ text: defaultResponse[type] }],
+				},
+			],
+			generationConfig: {
+				maxOutputTokens: 100,
+			},
+		});
+
+		const result = await chat.sendMessage(userInput);
+		const response = await result.response;
+		const text = response.text();
+		return text;
+	} catch (error) {
+		if (error instanceof GoogleGenerativeAIResponseError) {
+			const defaultResopnse = 'Uw?... uw?... không hiểu... ';
+			return defaultResopnse;
+		}
+	}
+
+}
 
 const chatWithPet = async (req, res) => {
 	try {
 		const userInput = req.body?.userInput;
+		const type = req.body?.type;
 		if (!userInput) {
 			return res.status(400).json({ error: 'Invalid request body' });
 		}
 
-		const response = await runChat(userInput);
+		const response = await runChat(userInput, type);
 		res.json({ response });
 	} catch (error) {
 		console.error('Error in chat endpoint:', error);

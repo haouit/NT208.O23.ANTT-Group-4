@@ -1,10 +1,31 @@
 <script>
 	import loader from '$lib/images/loader.gif';
 	import { URL_API } from '$lib/stores/checkToken';
+	import { pet, checkPet } from '$lib/stores/pet';
+	import { onMount } from 'svelte';
+	import { checkToken } from '$lib/stores/checkToken';
 
+
+	console.log($pet.name);
+	const petNames = ['Chó con', 'Mèo lười', 'Chinchilla'];
+	const peItndex = petNames.indexOf($pet.name);
+	const dogresponse = 'Gâu gâu! Tôi là chú chó con đáng yêu! Bạn muốn hỏi gì không?';
+	const catresponse = 'Meo meo! Tôi là chú mèo lười! Bạn muốn hỏi gì không?';
+	const mouseresponse = 'Chít chít! Tôi là Chinchilla! Bạn muốn hỏi gì không?';
+	const defaultResponse =[dogresponse, catresponse, mouseresponse];
+	const firstMessage = defaultResponse[peItndex];
 	$: isLoaderVisible = false;
-	$: chatHistory = [{ sender: 'bot', message: 'Chào bạn! Graw Graw!' }];
+	$: chatHistory = [{ sender: 'bot', message: firstMessage }];
 	$: userMessage = '';
+
+	onMount(async () => {
+			await checkToken();
+			let id;
+			if (typeof localStorage !== 'undefined') {
+				id = localStorage.getItem('id') || undefined;
+			}
+			await checkPet(id, false); 
+		});
 
 	async function sendMessage() {
 		const message = userMessage.trim();
@@ -16,7 +37,7 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ userInput: message })
+				body: JSON.stringify({ userInput: message, type: $pet.name})
 			});
 
 			const data = await response.json();

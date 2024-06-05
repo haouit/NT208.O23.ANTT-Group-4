@@ -76,6 +76,7 @@
 
 		/*Cài đặt của ChatBox*/
 		function openchat() {
+
 			popupOpened = true;
 		}
 		function closechat() {
